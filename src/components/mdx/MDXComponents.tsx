@@ -3,6 +3,8 @@ import { MDXComponents } from 'mdx/types';
 import React from 'react';
 import AudioPlayer from '../AudioPlayer';
 
+const GITHUB_PAGES_URL = 'https://brandonwilliams129.github.io/PersonalPage';
+
 interface CustomImageProps {
   src: string;
   alt: string;
@@ -12,9 +14,10 @@ interface CustomImageProps {
 
 const CustomImage = ({ src, alt, width, height }: CustomImageProps) => {
   // Handle both absolute and relative URLs
-  const imageSrc = src.startsWith('http') ? src : `/PersonalPage${src}`;
+  const imageSrc = src.startsWith('http') 
+    ? src 
+    : `${GITHUB_PAGES_URL}${src.startsWith('/') ? src : `/${src}`}`;
 
-  // Create a wrapper that's not inside a <p> tag
   return (
     <>
       <div className="relative w-full my-8">
@@ -25,6 +28,7 @@ const CustomImage = ({ src, alt, width, height }: CustomImageProps) => {
             fill
             className="object-cover rounded-lg"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+            unoptimized
           />
         </div>
       </div>
@@ -34,7 +38,6 @@ const CustomImage = ({ src, alt, width, height }: CustomImageProps) => {
 };
 
 export const mdxComponents: MDXComponents = {
-  // Override the default paragraph rendering for images
   p: ({ children }) => {
     const isImage = React.Children.toArray(children).some(
       child => React.isValidElement(child) && child.type === CustomImage

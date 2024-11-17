@@ -1,18 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
+  basePath: '/PersonalPage',
+  assetPrefix: '/PersonalPage/',
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
   },
-  basePath: '/PersonalPage',
-  assetPrefix: '/PersonalPage',
-  trailingSlash: true,
 }
 
 module.exports = nextConfig
