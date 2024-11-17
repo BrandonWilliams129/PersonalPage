@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import CustomImage from '@/components/CustomImage';
 
 interface Project {
   title: string;
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
           <div key={index} className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)]">
             <div className="grid md:grid-cols-[400px,1fr] gap-6">
               <div className="relative h-[225px] w-full">
-                <Image
+                <CustomImage
                   src={project.imageSrc}
                   alt={project.title}
                   fill

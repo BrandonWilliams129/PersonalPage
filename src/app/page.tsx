@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import CustomImage from '@/components/CustomImage';
 
 export default function Home() {
   return (
@@ -44,7 +44,7 @@ export default function Home() {
           </div>
           <div className="space-y-4">
             <div className="relative aspect-[16/9] w-full rounded-lg overflow-hidden shadow-xl">
-              <Image
+              <CustomImage
                 src="/images/profile.jpg"
                 alt="Wintermute - Brandon's Tesla Model 3"
                 fill

@@ -1,4 +1,5 @@
 import AudioPlayer from '@/components/AudioPlayer';
+import CustomImage from '@/components/CustomImage';
 import Image from 'next/image';
 
 interface Song {
@@ -76,7 +77,7 @@ export default function MusicPage() {
             <div className="grid md:grid-cols-[300px,1fr] gap-6">
               {song.imageSrc ? (
                 <div className="relative h-[300px] w-full">
-                  <Image
+                  <CustomImage
                     src={song.imageSrc}
                     alt={song.title}
                     fill
@@ -85,7 +86,7 @@ export default function MusicPage() {
                 </div>
               ) : (
                 <div className="relative h-[300px] w-full bg-[var(--primary)]/10 rounded-lg flex items-center justify-center">
-                  <span className="text-[var(--primary)] text-lg"> {song.title}</span>
+                  <span className="text-[var(--primary)] text-lg">{song.title}</span>
                 </div>
               )}
               <div className="flex flex-col">
