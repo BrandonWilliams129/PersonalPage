@@ -17,6 +17,28 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: 'Girls Name or Drug',
+    description: 'A fun and challenging quiz game where players must guess whether a given word is a girl\'s name or the name of a pharmaceutical drug. Test your knowledge and prepare to be surprised!',
+    imageSrc: '/images/projects/girls-name-or-drug.png',
+    tags: ['JavaScript', 'HTML', 'CSS', 'Quiz Game'],
+    links: {
+      play: '/games/girls-name-or-drug/index.html'
+    },
+    status: 'Completed',
+    date: 'March 2024'
+  },
+  {
+    title: 'Girls Name or Drug',
+    description: 'A fun and challenging quiz game where players must guess whether a given word is a girl\'s name or the name of a pharmaceutical drug. Test your knowledge and prepare to be surprised!',
+    imageSrc: '/images/projects/girls-name-or-drug.png',
+    tags: ['JavaScript', 'HTML', 'CSS', 'Quiz Game'],
+    links: {
+      play: '/games/girls-name-or-drug/index.html'
+    },
+    status: 'Completed',
+    date: 'March 2024'
+  },
+  {
     title: 'Bricked',
     description: 'A unique twist on the classic brick-breaker genre. Control a paddle to bounce the ball and break bricks, but with modern mechanics and challenging gameplay that keeps you coming back for more.',
     imageSrc: '/images/projects/Bricked.png',

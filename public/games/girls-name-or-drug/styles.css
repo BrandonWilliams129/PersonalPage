@@ -1,0 +1,397 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4776E6 0%, #8E54E9 100%);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    max-width: 400px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(71, 118, 230, 0.2);
+}
+
+h1 {
+    font-size: 3.2em;
+    margin-bottom: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h1 .drug {
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #4776E6,
+        1px -1px 0 #4776E6,
+        -1px 1px 0 #4776E6,
+        1px 1px 0 #4776E6,
+        2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+h1 .girl {
+    color: white;
+    text-shadow: 
+        -1px -1px 0 #FF4B6E,
+        1px -1px 0 #FF4B6E,
+        -1px 1px 0 #FF4B6E,
+        1px 1px 0 #FF4B6E,
+        2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#game, #gameOver {
+    margin-top: 30px;
+}
+
+#wordDisplay {
+    font-size: 2.8em;
+    margin: 30px 0;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease;
+    letter-spacing: 1px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.buttons button {
+    position: relative;
+    overflow: hidden;
+    padding: 15px 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.buttons button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s;
+}
+
+.buttons button:active::after {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.1);
+}
+
+#girlNameBtn {
+    background: linear-gradient(135deg, #FF4B6E, #FF8090);
+    color: #fff;
+}
+
+#drugNameBtn {
+    background: linear-gradient(135deg, #4776E6, #8E54E9);
+    color: #fff;
+}
+
+#score, #lives {
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+#lives {
+    display: none; /* Hide the text version */
+}
+
+.lives-bar {
+    width: 150px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin: 20px auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.lives-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, #FF4B6E, #FF8090);
+    border-radius: 5px;
+    transition: width 0.3s ease;
+    width: 100%;
+}
+
+#streak {
+    font-size: 1.2em;
+    margin-top: 10px;
+    color: #FFD700;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
+    animation: pulseStreak 1s ease-in-out;
+}
+
+.feedback {
+    font-size: 1.5em;
+    margin-top: 20px;
+    height: 40px;
+    transition: all 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+#gameOver h2 {
+    font-size: 2.5em;
+    color: #FFD700;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#playerName {
+    padding: 12px 20px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    margin: 10px 0;
+    width: 200px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+#playerName::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#playerName:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+#submitScoreBtn, #restartBtn {
+    background: linear-gradient(135deg, #FF4B6E, #FF8090);
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 15px 5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+#submitScoreBtn:hover, #restartBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+#submitScoreBtn:active, #restartBtn:active {
+    transform: translateY(-1px);
+}
+
+#submitScoreBtn::after, #restartBtn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 50%;
+    transition: transform 0.5s;
+}
+
+#submitScoreBtn:active::after, #restartBtn:active::after {
+    transform: translate(-50%, -50%) scale(2);
+}
+
+#restartBtn {
+    background: linear-gradient(135deg, #4776E6, #8E54E9);
+    margin-top: 30px;
+}
+
+#newHighScore {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#newHighScore p {
+    color: #FFD700;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#leaderboardSection {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#leaderboardSection h3 {
+    color: #FFD700;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#leaderboard {
+    text-align: left;
+    padding-left: 0;
+    list-style-type: none;
+}
+
+#leaderboard li {
+    margin: 8px 0;
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#leaderboard li:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.word-switch-enter {
+    animation: switchWord 0.5s ease;
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+.trophy {
+    color: #FFD700;
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+
+.confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    opacity: 0.8;
+    top: -20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseStreak {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes switchWord {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+@keyframes confetti-fall {
+    0% { 
+        transform: translate(0, -10vh) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translate(35px, 25vh) rotate(90deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-35px, 50vh) rotate(180deg);
+        opacity: 1;
+    }
+    75% {
+        transform: translate(35px, 75vh) rotate(270deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(-35px, 100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes confetti-sway {
+    0% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(-5px); }
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+    #wordDisplay {
+        font-size: 2em;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
