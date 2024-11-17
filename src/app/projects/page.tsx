@@ -22,21 +22,10 @@ const projects: Project[] = [
     imageSrc: '/images/projects/girls-name-or-drug.png',
     tags: ['JavaScript', 'HTML', 'CSS', 'Quiz Game'],
     links: {
-      play: '/games/girls-name-or-drug/index.html'
+      play: '/games/girls-name-or-drug/Index.html'
     },
     status: 'Completed',
-    date: 'March 2024'
-  },
-  {
-    title: 'Girls Name or Drug',
-    description: 'A fun and challenging quiz game where players must guess whether a given word is a girl\'s name or the name of a pharmaceutical drug. Test your knowledge and prepare to be surprised!',
-    imageSrc: '/images/projects/girls-name-or-drug.png',
-    tags: ['JavaScript', 'HTML', 'CSS', 'Quiz Game'],
-    links: {
-      play: '/games/girls-name-or-drug/index.html'
-    },
-    status: 'Completed',
-    date: 'March 2024'
+    date: 'November 2023'
   },
   {
     title: 'Bricked',
