@@ -1,7 +1,7 @@
-import { getAllPosts, getPostBySlug } from '@/lib/posts';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import Link from 'next/link';
-import { mdxComponents } from '@/components/mdx/MDXComponents';
+import { getAllPosts, getPostBySlug } from '@/lib/posts'
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import Link from 'next/link'
+import { MDXComponents } from '@/components/mdx/MDXComponents'
 
 interface PageProps {
   params: {
@@ -17,8 +17,8 @@ export async function generateStaticParams() {
 }
 
 export default async function BlogPost({ params }: PageProps) {
-  const post = await getPostBySlug(params.slug);
-
+  const post = await getPostBySlug(params.slug)
+  
   if (!post) {
     return (
       <div className="container-wrapper py-16">
@@ -28,7 +28,7 @@ export default async function BlogPost({ params }: PageProps) {
           ← Back to Blog
         </Link>
       </div>
-    );
+    )
   }
 
   return (
@@ -41,9 +41,9 @@ export default async function BlogPost({ params }: PageProps) {
         <h1 className="text-4xl font-bold mb-4 text-[var(--primary)]">{post.title}</h1>
         <p className="text-[var(--foreground)]/60 mb-8">{new Date(post.date).toLocaleDateString()}</p>
         <div className="mt-8">
-          <MDXRemote source={post.content} components={mdxComponents} />
+          {post.content && <MDXRemote source={post.content} components={MDXComponents} />}
         </div>
       </article>
     </div>
-  );
+  )
 }
