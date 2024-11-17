@@ -25,18 +25,7 @@ const projects: Project[] = [
       play: '/games/girls-name-or-drug/Index.html'
     },
     status: 'Completed',
-    date: 'November 2023'
-  },
-  {
-    title: 'Bricked',
-    description: 'A unique twist on the classic brick-breaker genre. Control a paddle to bounce the ball and break bricks, but with modern mechanics and challenging gameplay that keeps you coming back for more.',
-    imageSrc: '/images/projects/Bricked.png',
-    tags: ['Godot', 'GDScript', 'Arcade', 'Action'],
-    links: {
-      play: 'https://bit-shifter.itch.io/bricked'
-    },
-    status: 'Completed',
-    date: 'February 2024'
+    date: 'November 2024'
   },
   {
     title: 'Laser Tennis',
@@ -47,7 +36,18 @@ const projects: Project[] = [
       play: 'https://bit-shifter.itch.io/laser-tennis'
     },
     status: 'Completed',
-    date: 'January 2024'
+    date: 'October 2024'
+  },
+  {
+    title: 'Bricked',
+    description: 'A unique twist on the classic brick-breaker genre. Control a paddle to bounce the ball and break bricks, but with modern mechanics and challenging gameplay that keeps you coming back for more.',
+    imageSrc: '/images/projects/Bricked.png',
+    tags: ['Godot', 'GDScript', 'Arcade', 'Action'],
+    links: {
+      play: 'https://bit-shifter.itch.io/bricked'
+    },
+    status: 'Completed',
+    date: 'October 2024'
   }
 ];
 
