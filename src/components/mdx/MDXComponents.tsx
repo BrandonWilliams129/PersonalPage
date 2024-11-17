@@ -11,13 +11,16 @@ interface CustomImageProps {
 }
 
 const CustomImage = ({ src, alt, width, height }: CustomImageProps) => {
+  // Handle both absolute and relative URLs
+  const imageSrc = src.startsWith('http') ? src : `/PersonalPage${src}`;
+
   // Create a wrapper that's not inside a <p> tag
   return (
     <>
       <div className="relative w-full my-8">
         <div className="relative h-[400px] w-full">
           <Image
-            src={src}
+            src={imageSrc}
             alt={alt}
             fill
             className="object-cover rounded-lg"
