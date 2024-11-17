@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: #ffffff;
+  --background: #0f0f0f;
+  --primary: #8A2BE2;
+  --primary-hover: #9d4eff;
+  --secondary: #1a1a1a;
+  --foreground-muted: rgba(255, 255, 255, 0.8);
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--background)] text-[var(--foreground)];
+  }
+}
+
+@layer components {
+  .container-wrapper {
+    @apply container mx-auto px-4;
+  }
+
+  .button-primary {
+    @apply px-6 py-2 rounded-lg bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)] transition-colors;
+  }
+
+  .nav-link {
+    @apply text-[var(--foreground-muted)] hover:text-[var(--primary)] transition-colors;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold mb-8 text-[var(--primary)];
+  }
+}
+
+@layer utilities {
+  .prose {
+    @apply text-[var(--foreground)];
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply text-[var(--primary)] font-bold mt-8 mb-4;
+  }
+
+  .prose p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose a {
+    @apply text-[var(--primary)] hover:text-[var(--primary-hover)] transition-colors;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-4 pl-6;
+  }
+
+  .prose li {
+    @apply mb-2;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-[var(--primary)] pl-4 italic my-4;
+  }
+
+  .prose code {
+    @apply bg-[var(--secondary)] px-2 py-1 rounded;
+  }
+
+  .prose pre {
+    @apply bg-[var(--secondary)] p-4 rounded-lg my-4 overflow-x-auto;
+  }
+}

@@ -1,0 +1,1176 @@
+import Link from 'next/link';
+
+interface Book {
+  title: string;
+  author: string;
+  description: string;
+  genre: string[];
+  status: 'Read' | 'Currently Reading' | 'Want to Read';
+  link?: string;
+  rating?: number;
+  thoughts?: string;
+}
+
+const books: Book[] = [
+  {
+    title: 'Kissinger: A Biography',
+    author: 'Walter Isaacson',
+    description: 'A comprehensive look at one of the most influential and controversial diplomats in American history.',
+    genre: ['Biography', 'Politics', 'History'],
+    status: 'Currently Reading',
+    link: 'https://www.amazon.com/Kissinger-Biography-Walter-Isaacson/dp/0743286979'
+  },
+  {
+    title: 'The Psychology of Money',
+    author: 'Morgan Housel',
+    description: 'A collection of timeless lessons about wealth, greed, and happiness, exploring the psychology behind our financial decisions.',
+    genre: ['Finance', 'Psychology', 'Personal Development'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant insights into how our psychology affects our financial decisions.',
+    link: 'https://www.amazon.com/Psychology-Money-Timeless-Lessons-Happiness/dp/0857197681'
+  },
+  {
+    title: 'Neuromancer',
+    author: 'William Gibson',
+    description: 'The groundbreaking cyberpunk novel that coined the term "cyberspace" and influenced countless works of science fiction.',
+    genre: ['Science Fiction', 'Cyberpunk'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'A masterpiece that defined cyberpunk and predicted many aspects of our digital world.',
+    link: 'https://www.amazon.com/Neuromancer-William-Gibson/dp/0441569595'
+  },
+  {
+    title: 'Dear Reader',
+    author: 'Michael Malice',
+    description: 'The unauthorized autobiography of Kim Jong Il, offering a satirical yet informative look into North Korea\'s dictatorship.',
+    genre: ['Politics', 'History', 'Satire'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'A fascinating blend of humor and insight into one of the world\'s most secretive regimes.',
+    link: 'https://www.amazon.com/Dear-Reader-Unauthorized-Autobiography-Jong/dp/1495283259'
+  },
+  {
+    title: 'The New Right',
+    author: 'Michael Malice',
+    description: 'A journey exploring the fringes of American politics and the emergence of new political movements.',
+    genre: ['Politics', 'Current Events'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'An interesting exploration of modern political movements and ideologies.',
+    link: 'https://www.amazon.com/New-Right-Journey-American-Politics/dp/1250154669'
+  },
+  {
+    title: 'The Story of Civilization',
+    author: 'Will Durant',
+    description: 'A monumental work covering the history of human civilization, from its earliest beginnings to modern times.',
+    genre: ['History', 'Philosophy', 'Culture'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'An incredible journey through human history and cultural development.',
+    link: 'https://www.amazon.com/Story-Civilization-11-Set/dp/1567310230'
+  },
+  {
+    title: 'Thus Spoke Zarathustra',
+    author: 'Friedrich Nietzsche',
+    description: 'Nietzsche\'s philosophical novel presenting his ideas about the death of God, the Übermensch, and eternal recurrence.',
+    genre: ['Philosophy', 'Literature'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'A challenging but rewarding exploration of Nietzsche\'s philosophy.',
+    link: 'https://www.amazon.com/Thus-Spoke-Zarathustra-Friedrich-Nietzsche/dp/0140441182'
+  },
+  {
+    title: 'Boyd',
+    author: 'Robert Coram',
+    description: 'The biography of John Boyd, the fighter pilot whose theories of warfare revolutionized military strategy.',
+    genre: ['Biography', 'Military', 'History'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating look at a brilliant military theorist who changed modern warfare.',
+    link: 'https://www.amazon.com/Boyd-Fighter-Pilot-Who-Changed/dp/0316796883'
+  },
+  {
+    title: 'On War',
+    author: 'Carl von Clausewitz',
+    description: 'The classic treatise on military strategy and the nature of warfare.',
+    genre: ['Military', 'Strategy', 'History'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Dense but foundational work on military theory and strategy.',
+    link: 'https://www.amazon.com/War-Carl-von-Clausewitz/dp/0691018545'
+  },
+  {
+    title: '33 Strategies of War',
+    author: 'Robert Greene',
+    description: 'A comprehensive guide to strategic thinking, drawing from military history and applying it to modern life.',
+    genre: ['Strategy', 'History', 'Military'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting historical examples applied to modern strategic thinking.',
+    link: 'https://www.amazon.com/33-Strategies-War-Robert-Greene/dp/0143112783'
+  },
+  {
+    title: 'We Are Legion (We Are Bob)',
+    author: 'Dennis E. Taylor',
+    description: 'Book 1 of the Bobiverse series, following a reincarnated human consciousness exploring the cosmos.',
+    genre: ['Science Fiction', 'Space Opera'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant blend of humor and hard sci-fi concepts.',
+    link: 'https://www.amazon.com/Are-Legion-Bob-Bobiverse-Book-ebook/dp/B01LWAESYQ'
+  },
+  {
+    title: 'For We Are Many',
+    author: 'Dennis E. Taylor',
+    description: 'Book 2 of the Bobiverse series, expanding the scope of Bob\'s adventures.',
+    genre: ['Science Fiction', 'Space Opera'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Excellent continuation that builds on the first book\'s foundation.',
+    link: 'https://www.amazon.com/We-Are-Many-Bobiverse-Book-ebook/dp/B01MZI77C0'
+  },
+  {
+    title: 'All These Worlds',
+    author: 'Dennis E. Taylor',
+    description: 'Book 3 of the Bobiverse series, bringing the original trilogy to a satisfying conclusion.',
+    genre: ['Science Fiction', 'Space Opera'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'A fantastic conclusion to an innovative sci-fi series.',
+    link: 'https://www.amazon.com/All-These-Worlds-Bobiverse-Book-ebook/dp/B0736185ZL'
+  },
+  {
+    title: 'Heaven\'s River',
+    author: 'Dennis E. Taylor',
+    description: 'Book 4 of the Bobiverse series, taking the story in new and unexpected directions.',
+    genre: ['Science Fiction', 'Space Opera'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'An interesting new direction for the series.',
+    link: 'https://www.amazon.com/Heavens-River-Bobiverse-Book-4-ebook/dp/B088C51F1D'
+  },
+  {
+    title: 'Endurance',
+    author: 'Alfred Lansing',
+    description: 'The incredible true story of Ernest Shackleton\'s survival after his Antarctic expedition goes wrong.',
+    genre: ['History', 'Adventure', 'Biography'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'An amazing tale of human endurance and leadership.',
+    link: 'https://www.amazon.com/Endurance-Shackletons-Incredible-Alfred-Lansing/dp/0465062881'
+  },
+  {
+    title: 'Strategy: A History',
+    author: 'Lawrence Freedman',
+    description: 'A comprehensive exploration of strategy across military, political, and business domains.',
+    genre: ['History', 'Strategy', 'Military'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Thorough examination of strategic thinking throughout history.',
+    link: 'https://www.amazon.com/Strategy-History-Lawrence-Freedman/dp/0199325154'
+  },
+  {
+    title: 'The Skeptics\' Guide to the Future',
+    author: 'Dr. Steven Novella',
+    description: 'An examination of how past science fiction and scientific predictions inform our understanding of future technologies.',
+    genre: ['Science', 'Technology', 'Futurism'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Insightful analysis of technological predictions and their likelihood.',
+    link: 'https://www.amazon.com/Skeptics-Guide-Future-Yesterdays-Science/dp/1538709244'
+  },
+  {
+    title: 'Games People Play',
+    author: 'Eric Berne',
+    description: 'A groundbreaking analysis of the psychology behind human social interactions and relationships.',
+    genre: ['Psychology', 'Social Science'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'A fascinating look at human behavior patterns that changed how I view social interactions.',
+    link: 'https://www.amazon.com/Games-People-Play-Psychology-Relationships/dp/0141040270'
+  },
+  {
+    title: 'Snow Crash',
+    author: 'Neal Stephenson',
+    description: 'A mind-bending cyberpunk novel that predicted many aspects of our digital world.',
+    genre: ['Science Fiction', 'Cyberpunk'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant mix of technology, mythology, and social commentary that feels more relevant every year.',
+    link: 'https://www.amazon.com/Snow-Crash-Neal-Stephenson/dp/0553380958'
+  },
+  {
+    title: 'The Coming of Conan the Cimmerian',
+    author: 'Robert E. Howard',
+    description: 'The original Conan stories, showcasing Howard\'s masterful world-building and action-packed storytelling.',
+    genre: ['Fantasy', 'Sword and Sorcery'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Raw, powerful storytelling that defined a genre.',
+    link: 'https://www.amazon.com/Coming-Conan-Cimmerian-Original-Adventures/dp/0345461517'
+  },
+  {
+    title: 'The War of Art',
+    author: 'Steven Pressfield',
+    description: 'A guide to overcoming creative blocks and the internal resistance that prevents us from achieving our goals.',
+    genre: ['Self-Help', 'Creativity'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Essential reading for any creative person struggling with resistance.',
+    link: 'https://www.amazon.com/War-Art-Through-Creative-Battles/dp/1936891026'
+  },
+  {
+    title: 'Wings on My Sleeve',
+    author: 'Eric \'Winkle\' Brown',
+    description: 'The autobiography of one of aviation\'s greatest test pilots, who flew a record-breaking number of different aircraft.',
+    genre: ['Aviation', 'Biography', 'Military History'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating account of aviation history through the eyes of a legendary test pilot.',
+    link: 'https://www.amazon.com/Wings-My-Sleeve-Eric-Brown/dp/0753822091'
+  },
+  {
+    title: 'The Player of Games',
+    author: 'Iain M. Banks',
+    description: 'A masterpiece of science fiction exploring culture, politics, and strategy through the lens of gaming.',
+    genre: ['Science Fiction', 'Space Opera'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant exploration of games, culture, and politics in a far-future setting.',
+    link: 'https://www.amazon.com/Player-Games-Culture-Iain-Banks/dp/0316005401'
+  },
+  {
+    title: 'The Dictator\'s Handbook',
+    author: 'Bruce Bueno de Mesquita, Alastair Smith',
+    description: 'A provocative analysis of how political leaders gain and maintain power through strategic decision-making.',
+    genre: ['Politics', 'Political Science', 'History'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Eye-opening perspective on political power and leadership dynamics.',
+    link: 'https://www.amazon.com/Dictators-Handbook-Behavior-Almost-Politics/dp/1610391845'
+  },
+  {
+    title: 'Atomic Adventures',
+    author: 'James Mahaffey',
+    description: 'A journey through the stranger-than-fiction history of nuclear science and its eccentric pioneers.',
+    genre: ['Science', 'History', 'Physics'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting collection of nuclear science stories and discoveries.',
+    link: 'https://www.amazon.com/Atomic-Adventures-Forgotten-Isotopic-Murder/dp/1681774801'
+  },
+  {
+    title: 'Ignition!',
+    author: 'John Drury Clark',
+    description: 'A humorous and technical history of rocket fuel development during the space race.',
+    genre: ['Science', 'History', 'Space'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Entertaining and informative look at the dangerous early days of rocket science.',
+    link: 'https://www.amazon.com/Ignition-Informal-History-Liquid-Propellants/dp/0813595835'
+  },
+  {
+    title: '12 Rules for Life',
+    author: 'Jordan B. Peterson',
+    description: 'A self-help book combining psychology, mythology, and philosophy to present rules for living.',
+    genre: ['Self-Help', 'Psychology', 'Philosophy'],
+    status: 'Read',
+    rating: 2,
+    thoughts: 'Some interesting ideas but overall disappointing.',
+    link: 'https://www.amazon.com/12-Rules-Life-Antidote-Chaos/dp/0345816021'
+  },
+  {
+    title: 'Prediction Machines',
+    author: 'Ajay Agrawal, Joshua Gans, Avi Goldfarb',
+    description: 'An economic perspective on artificial intelligence and its impact on business and society.',
+    genre: ['Technology', 'Economics', 'Business'],
+    status: 'Read',
+    rating: 2,
+    thoughts: 'Oversimplified take on AI\'s economic implications.',
+    link: 'https://www.amazon.com/Prediction-Machines-Economics-Artificial-Intelligence/dp/1633695670'
+  },
+  {
+    title: 'Chernobyl 01:23:40',
+    author: 'Andrew Leatherbarrow',
+    description: 'A detailed account of the Chernobyl nuclear disaster, its causes, and aftermath.',
+    genre: ['History', 'Science', 'Disaster'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Solid overview of the Chernobyl disaster with some new insights.',
+    link: 'https://www.amazon.com/Chernobyl-01-23-40-Incredible-Nuclear-Disaster/dp/0993597505'
+  },
+  {
+    title: 'The Selfish Gene',
+    author: 'Richard Dawkins',
+    description: 'A groundbreaking look at evolution from the gene\'s perspective, revolutionizing our understanding of natural selection.',
+    genre: ['Science', 'Biology', 'Evolution'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Influential perspective on evolution and genetic behavior.',
+    link: 'https://www.amazon.com/Selfish-Gene-Anniversary-Landmark-Science/dp/0198788606'
+  },
+  {
+    title: 'Off to Be the Wizard',
+    author: 'Scott Meyer',
+    description: 'Book 1 of Magic 2.0, where a computer programmer discovers reality can be manipulated like code.',
+    genre: ['Science Fiction', 'Fantasy', 'Humor'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Creative and entertaining blend of technology and fantasy.',
+    link: 'https://www.amazon.com/Off-Be-Wizard-Magic-Book-ebook/dp/B00EF8Z32I'
+  },
+  {
+    title: 'Spell or High Water',
+    author: 'Scott Meyer',
+    description: 'Book 2 of Magic 2.0, continuing the adventures in a world where reality is programmable.',
+    genre: ['Science Fiction', 'Fantasy', 'Humor'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Decent continuation of the series but not as strong as the first.',
+    link: 'https://www.amazon.com/Spell-High-Water-Magic-Book-ebook/dp/B00EF8Z32I'
+  },
+  {
+    title: 'An Unwelcome Quest',
+    author: 'Scott Meyer',
+    description: 'Book 3 of Magic 2.0, where the programmer-wizards face new challenges.',
+    genre: ['Science Fiction', 'Fantasy', 'Humor'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Fun but starting to show diminishing returns for the series.',
+    link: 'https://www.amazon.com/Unwelcome-Quest-Magic-Book-ebook/dp/B00EF8Z32I'
+  },
+  {
+    title: 'Talent Is Overrated',
+    author: 'Geoff Colvin',
+    description: 'An exploration of what really drives high performance, challenging the notion of natural talent.',
+    genre: ['Psychology', 'Self-Help', 'Business'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting perspective on deliberate practice and skill development.',
+    link: 'https://www.amazon.com/Talent-Overrated-Separates-World-Class-Performers/dp/1591841666'
+  },
+  {
+    title: 'Outliers',
+    author: 'Malcolm Gladwell',
+    description: 'An investigation into the factors that contribute to high levels of success.',
+    genre: ['Psychology', 'Sociology', 'Business'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating look at the hidden factors behind success stories.',
+    link: 'https://www.amazon.com/Outliers-Story-Success-Malcolm-Gladwell/dp/0316017930'
+  },
+  {
+    title: 'Algorithms to Live By',
+    author: 'Brian Christian, Tom Griffiths',
+    description: 'How computer algorithms can be applied to our everyday lives to solve common decision-making problems.',
+    genre: ['Computer Science', 'Psychology', 'Self-Help'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Clever application of computer science concepts to real-life decisions.',
+    link: 'https://www.amazon.com/Algorithms-Live-Computer-Science-Decisions/dp/1627790365'
+  },
+  {
+    title: 'Hackers',
+    author: 'Steven Levy',
+    description: 'The fascinating history of the computer revolution and the innovators who made it happen.',
+    genre: ['Technology', 'History', 'Biography'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Essential history of hacker culture and the early days of computing.',
+    link: 'https://www.amazon.com/Hackers-Computer-Revolution-Steven-Levy/dp/1449388396'
+  },
+  {
+    title: 'Breakfast of Champions',
+    author: 'Kurt Vonnegut',
+    description: 'A wildly satirical novel about the American condition, featuring Vonnegut\'s signature dark humor.',
+    genre: ['Fiction', 'Literary Fiction', 'Satire'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Classic Vonnegut satire with memorable characters and illustrations.',
+    link: 'https://www.amazon.com/Breakfast-Champions-Novel-Kurt-Vonnegut/dp/0385334206'
+  },
+  {
+    title: 'Deadeye Dick',
+    author: 'Kurt Vonnegut',
+    description: 'A dark comedy about a man who accidentally killed someone as a child.',
+    genre: ['Fiction', 'Literary Fiction', 'Satire'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Dark and thought-provoking exploration of guilt and responsibility.',
+    link: 'https://www.amazon.com/Deadeye-Dick-Novel-Kurt-Vonnegut/dp/0385334176'
+  },
+  {
+    title: 'Slaughterhouse-Five',
+    author: 'Kurt Vonnegut',
+    description: 'A masterpiece of anti-war fiction, following Billy Pilgrim\'s time-traveling experiences during WWII.',
+    genre: ['Fiction', 'Science Fiction', 'Literary Fiction'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'A profound and innovative exploration of war, time, and human nature.',
+    link: 'https://www.amazon.com/Slaughterhouse-Five-Novel-Modern-Library-Novels/dp/0385333846'
+  },
+  {
+    title: 'Mother Night',
+    author: 'Kurt Vonnegut',
+    description: 'A dark tale about an American spy in Nazi Germany who questions his own identity.',
+    genre: ['Fiction', 'Literary Fiction', 'War Fiction'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Powerful exploration of identity and moral complexity.',
+    link: 'https://www.amazon.com/Mother-Night-Novel-Kurt-Vonnegut/dp/0385334141'
+  },
+  {
+    title: 'Cat\'s Cradle',
+    author: 'Kurt Vonnegut',
+    description: 'A satirical commentary on modern man and his madness, involving a deadly form of ice.',
+    genre: ['Fiction', 'Science Fiction', 'Satire'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant satire of science, religion, and human folly.',
+    link: 'https://www.amazon.com/Cats-Cradle-Novel-Kurt-Vonnegut/dp/038533348X'
+  },
+  {
+    title: 'Bluebeard',
+    author: 'Kurt Vonnegut',
+    description: 'The autobiography of an abstract expressionist painter with a mysterious secret in his barn.',
+    genre: ['Fiction', 'Literary Fiction', 'Art'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating meditation on art, war, and creativity.',
+    link: 'https://www.amazon.com/Bluebeard-Novel-Kurt-Vonnegut/dp/0385333501'
+  },
+  {
+    title: 'The Martian',
+    author: 'Andy Weir',
+    description: 'A gripping tale of survival on Mars, combining humor with hard science.',
+    genre: ['Science Fiction', 'Hard Science Fiction', 'Adventure'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant blend of scientific accuracy and engaging storytelling.',
+    link: 'https://www.amazon.com/Martian-Andy-Weir/dp/0553418025'
+  },
+  {
+    title: 'Tropic of Cancer',
+    author: 'Henry Miller',
+    description: 'A groundbreaking semi-autobiographical novel about Miller\'s life as a struggling writer in Paris.',
+    genre: ['Literary Fiction', 'Autobiography', 'Classics'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Raw and honest exploration of the artistic life.',
+    link: 'https://www.amazon.com/Tropic-Cancer-Henry-Miller/dp/0802131786'
+  },
+  {
+    title: 'The Dip',
+    author: 'Seth Godin',
+    description: 'A short guide about knowing when to quit and when to stick with something.',
+    genre: ['Business', 'Self-Help', 'Personal Development'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Concise and practical advice about strategic quitting.',
+    link: 'https://www.amazon.com/Dip-Little-Book-Teaches-Stick/dp/1591841666'
+  },
+  {
+    title: 'Unstoppable',
+    author: 'Bill Nye',
+    description: 'An optimistic look at how science and technology can solve our biggest challenges.',
+    genre: ['Science', 'Technology', 'Environmental Science'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Engaging overview of scientific solutions to global problems.',
+    link: 'https://www.amazon.com/Unstoppable-Harnessing-Science-Change-World/dp/1250109442'
+  },
+  {
+    title: 'Sapiens',
+    author: 'Yuval Noah Harari',
+    description: 'A thought-provoking exploration of human history from ancient evolution to modern civilization.',
+    genre: ['History', 'Anthropology', 'Science'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating perspective on human history and development.',
+    link: 'https://www.amazon.com/Sapiens-Humankind-Yuval-Noah-Harari/dp/0062316117'
+  },
+  {
+    title: 'Heart of Darkness',
+    author: 'Joseph Conrad',
+    description: 'A powerful narrative about imperialism and the darkness within human nature.',
+    genre: ['Fiction', 'Classics', 'Literary Fiction'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Profound exploration of human nature and colonialism.',
+    link: 'https://www.amazon.com/Heart-Darkness-Joseph-Conrad/dp/0486264645'
+  },
+  {
+    title: 'The C++ Programming Language',
+    author: 'Bjarne Stroustrup',
+    description: 'The definitive guide to C++ by its creator, covering both basic concepts and advanced features.',
+    genre: ['Programming', 'Computer Science', 'Technical'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'The authoritative resource for understanding C++ in depth.',
+    link: 'https://www.amazon.com/C-Programming-Language-4th/dp/0321563840'
+  },
+  {
+    title: 'Skunk Works',
+    author: 'Ben R. Rich, Leo Janos',
+    description: 'An insider\'s account of Lockheed\'s legendary aerospace development division.',
+    genre: ['Aviation', 'History', 'Technology'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating look into advanced aerospace development and innovation.',
+    link: 'https://www.amazon.com/Skunk-Works-Personal-Memoir-Lockheed/dp/0316743003'
+  },
+  {
+    title: 'Masters of Doom',
+    author: 'David Kushner',
+    description: 'The story of id Software\'s John Carmack and John Romero, creators of Doom and Quake.',
+    genre: ['Technology', 'Biography', 'Gaming'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Compelling story of gaming history and technological innovation.',
+    link: 'https://www.amazon.com/Masters-Doom-Created-Transformed-Culture/dp/0812972155'
+  },
+  {
+    title: 'The Search for Exoplanets',
+    author: 'Joshua N. Winn',
+    description: 'A comprehensive exploration of the science behind discovering and studying planets outside our solar system.',
+    genre: ['Science', 'Astronomy', 'Physics'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating look at modern exoplanet detection and research methods.',
+    link: 'https://www.amazon.com/Search-Exoplanets-What-Astronomers-Know/dp/B00DJUK8HS'
+  },
+  {
+    title: 'Lolita',
+    author: 'Vladimir Nabokov',
+    description: 'A controversial masterpiece of 20th-century literature, notable for its complex narrative and linguistic artistry.',
+    genre: ['Literary Fiction', 'Classics', 'Controversial Literature'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant and disturbing, showcasing Nabokov\'s masterful command of language.',
+    link: 'https://www.amazon.com/Lolita-Vladimir-Nabokov/dp/0679723161'
+  },
+  {
+    title: 'I Hope They Serve Beer in Hell',
+    author: 'Tucker Max',
+    description: 'A collection of outrageous true stories from the author\'s experiences.',
+    genre: ['Humor', 'Memoir', 'Comedy'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Entertaining but shallow collection of wild stories.',
+    link: 'https://www.amazon.com/Hope-They-Serve-Beer-Hell/dp/0806532257'
+  },
+  {
+    title: 'The Norsemen - Understanding Vikings and Their Culture',
+    author: 'Professor Michael D.C. Drout',
+    description: 'A comprehensive overview of Viking history, culture, and influence on the medieval world.',
+    genre: ['History', 'Medieval Studies', 'Cultural Studies'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Excellent exploration of Viking culture beyond the common stereotypes.',
+    link: 'https://www.amazon.com/Modern-Scholar-Norsemen-Understanding-Culture/dp/B00DEQQK5C'
+  },
+  {
+    title: 'Mythology',
+    author: 'Edith Hamilton',
+    description: 'A classic compendium of Greek, Roman, and Norse mythology.',
+    genre: ['Mythology', 'Classics', 'History'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Comprehensive but somewhat dry overview of classical mythology.',
+    link: 'https://www.amazon.com/Mythology-Timeless-Tales-Gods-Heroes/dp/0446574759'
+  },
+  {
+    title: 'Salt Sugar Fat',
+    author: 'Michael Moss',
+    description: 'An investigative look into how the food industry uses these three ingredients to make their products addictive.',
+    genre: ['Food Science', 'Health', 'Investigative Journalism'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Eye-opening investigation into food industry practices.',
+    link: 'https://www.amazon.com/Salt-Sugar-Fat-Giants-Hooked/dp/0812972155'
+  },
+  {
+    title: 'The Practicing Mind',
+    author: 'Thomas M. Sterner',
+    description: 'A guide to developing focus and discipline through the art of practice and present-moment awareness.',
+    genre: ['Self-Help', 'Psychology', 'Personal Development'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Valuable insights into the nature of practice and skill development.',
+    link: 'https://www.amazon.com/Practicing-Mind-Developing-Discipline-Challenge/dp/1608680908'
+  },
+  {
+    title: 'Eating the Dinosaur',
+    author: 'Chuck Klosterman',
+    description: 'A collection of essays exploring pop culture, sports, and modern life through Klosterman\'s unique perspective.',
+    genre: ['Essays', 'Cultural Criticism', 'Pop Culture'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Entertaining and insightful cultural analysis with Klosterman\'s signature style.',
+    link: 'https://www.amazon.com/Eating-Dinosaur-Chuck-Klosterman/dp/1416544216'
+  },
+  {
+    title: 'The Hitchhiker\'s Guide to the Galaxy',
+    author: 'Douglas Adams',
+    description: 'A comedic science fiction classic about the adventures of Arthur Dent after Earth\'s destruction.',
+    genre: ['Science Fiction', 'Comedy', 'Satire'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Classic sci-fi humor with memorable concepts and characters.',
+    link: 'https://www.amazon.com/Hitchhikers-Guide-Galaxy-Douglas-Adams/dp/0345391802'
+  },
+  {
+    title: 'The Anglo-Saxon World',
+    author: 'Professor Michael D.C. Drout',
+    description: 'A comprehensive examination of Anglo-Saxon history, literature, and culture.',
+    genre: ['History', 'Medieval Studies', 'Literature'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Excellent overview of Anglo-Saxon culture and its lasting influence.',
+    link: 'https://www.amazon.com/Modern-Scholar-Anglo-Saxon-World/dp/B00DEQQK5C'
+  },
+  {
+    title: 'Gumption',
+    author: 'Nick Offerman',
+    description: 'A collection of biographical essays about remarkable Americans who have shaped our culture and history.',
+    genre: ['Biography', 'History', 'Humor'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Entertaining and insightful profiles of American innovators and troublemakers.',
+    link: 'https://www.amazon.com/Gumption-Relighting-Freedom-Americas-Troublemakers/dp/0451473019'
+  },
+  {
+    title: '13 Things That Don\'t Make Sense',
+    author: 'Michael Brooks',
+    description: 'An exploration of the most perplexing scientific anomalies and mysteries that challenge our understanding.',
+    genre: ['Science', 'Physics', 'Popular Science'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting look at scientific mysteries, though some explanations feel incomplete.',
+    link: 'https://www.amazon.com/13-Things-That-Dont-Make/dp/1861976475'
+  },
+  {
+    title: 'Periodic Tales',
+    author: 'Hugh Aldersey-Williams',
+    description: 'A fascinating journey through the cultural history of the chemical elements.',
+    genre: ['Science', 'Chemistry', 'History'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant blend of chemistry, history, and cultural significance of the elements.',
+    link: 'https://www.amazon.com/Periodic-Tales-Cultural-History-Elements/dp/0062014102'
+  },
+  {
+    title: 'Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future',
+    author: 'Ashlee Vance',
+    description: 'The first comprehensive biography of the entrepreneur behind Tesla, SpaceX, and PayPal.',
+    genre: ['Biography', 'Business', 'Technology'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting but now dated look at Musk\'s early career and companies.',
+    link: 'https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/0062301233'
+  },
+  {
+    title: 'Elon Musk',
+    author: 'Walter Isaacson',
+    description: 'A comprehensive biography of Elon Musk by the acclaimed biographer of Steve Jobs and Einstein.',
+    genre: ['Biography', 'Business', 'Technology'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'More recent and thorough examination of Musk\'s life and impact.',
+    link: 'https://www.amazon.com/Elon-Musk-Walter-Isaacson/dp/1982181281'
+  },
+  {
+    title: 'Einstein: His Life and Universe',
+    author: 'Walter Isaacson',
+    description: 'A detailed biography of Albert Einstein, exploring both his scientific genius and personal life.',
+    genre: ['Biography', 'Science', 'History'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Excellent portrayal of Einstein\'s life, work, and impact on physics.',
+    link: 'https://www.amazon.com/Einstein-Life-Universe-Walter-Isaacson/dp/0743264746'
+  },
+  {
+    title: 'Bullshit Jobs: A Theory',
+    author: 'David Graeber',
+    description: 'An anthropological exploration of meaningless jobs and their societal impact.',
+    genre: ['Sociology', 'Economics', 'Cultural Criticism'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Thought-provoking analysis of modern work and societal values.',
+    link: 'https://www.amazon.com/Bullshit-Jobs-Theory-David-Graeber/dp/150114331X'
+  },
+  {
+    title: 'Guns, Germs and Steel',
+    author: 'Jared Diamond',
+    description: 'A comprehensive examination of how geographical and environmental factors shaped human civilization.',
+    genre: ['History', 'Anthropology', 'Science'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting thesis about civilization development, though sometimes oversimplified.',
+    link: 'https://www.amazon.com/Guns-Germs-Steel-Fates-Societies/dp/0393354326'
+  },
+  {
+    title: 'The Holographic Universe',
+    author: 'Michael Talbot',
+    description: 'An exploration of the theory that the universe might be a hologram, combining physics and metaphysics.',
+    genre: ['Science', 'Physics', 'Philosophy'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating exploration of holographic theory and its implications.',
+    link: 'https://www.amazon.com/Holographic-Universe-Revolutionary-Theory-Reality/dp/0062014102'
+  },
+  {
+    title: 'Rust: The Longest War',
+    author: 'Jonathan Waldman',
+    description: 'A fascinating look at corrosion\'s impact on civilization and our endless battle against it.',
+    genre: ['Science', 'Engineering', 'History'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Surprisingly engaging exploration of corrosion\'s role in human civilization.',
+    link: 'https://www.amazon.com/Rust-Longest-War-Jonathan-Waldman/dp/1451691599'
+  },
+  {
+    title: 'Footprints in the Dust',
+    author: 'Richard F. Gordon Jr, Colin Burgess',
+    description: 'A detailed account of the Apollo missions that followed the first Moon landing.',
+    genre: ['Space', 'History', 'Science'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Interesting details about later Apollo missions, though sometimes technical.',
+    link: 'https://www.amazon.com/Footprints-Dust-Epic-Voyages-1969-1975/dp/0803262825'
+  },
+  {
+    title: 'Debt: The First 5,000 Years',
+    author: 'David Graeber',
+    description: 'An anthropological exploration of debt\'s role in human civilization and economic systems.',
+    genre: ['Economics', 'History', 'Anthropology'],
+    status: 'Read',
+    rating: 2,
+    thoughts: 'Ambitious scope but sometimes loses focus in its broad historical analysis.',
+    link: 'https://www.amazon.com/Debt-First-5-000-Years/dp/1612191290'
+  },
+  {
+    title: 'A History of the World in 6 Glasses',
+    author: 'Tom Standage',
+    description: 'An innovative history of human civilization told through the lens of six key beverages.',
+    genre: ['History', 'Food and Drink', 'Cultural Studies'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating perspective on history through the evolution of beverages.',
+    link: 'https://www.amazon.com/History-World-6-Glasses/dp/0802715524'
+  },
+  {
+    title: 'History\'s Greatest Voyages of Exploration',
+    author: 'Vejas Gabriel Liulevicius',
+    description: 'A comprehensive look at humanity\'s most significant journeys of discovery.',
+    genre: ['History', 'Adventure', 'Exploration'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Engaging overview of human exploration and its impact on civilization.',
+    link: 'https://www.amazon.com/Historys-Greatest-Voyages-Exploration/dp/B00DJUK7N4'
+  },
+  {
+    title: 'The Death of Cool',
+    author: 'Gavin McInnes',
+    description: 'A memoir about growing up, aging, and the transition from rebellion to adulthood.',
+    genre: ['Memoir', 'Humor', 'Cultural Criticism'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Raw and honest exploration of counterculture and growing up.',
+    link: 'https://www.amazon.com/Death-Cool-Teenage-Rebellion-Adulthood/dp/1451614187'
+  },
+  {
+    title: 'Bad Astronomy',
+    author: 'Philip Plait',
+    description: 'A scientific examination and debunking of common astronomy myths and misconceptions.',
+    genre: ['Science', 'Astronomy', 'Skepticism'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Excellent breakdown of astronomical misconceptions and scientific thinking.',
+    link: 'https://www.amazon.com/Bad-Astronomy-Misconceptions-Revealed-Landing/dp/0471409766'
+  },
+  {
+    title: 'Undeniable',
+    author: 'Bill Nye',
+    description: 'A passionate defense of evolution and explanation of how it shapes our world.',
+    genre: ['Science', 'Biology', 'Evolution'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Clear and engaging explanation of evolutionary science.',
+    link: 'https://www.amazon.com/Undeniable-Evolution-Science-Creation/dp/1250074223'
+  },
+  {
+    title: 'The X-15 Rocket Plane',
+    author: 'Michelle L. Evans',
+    description: 'The story of the groundbreaking X-15 program that helped pave the way for spaceflight.',
+    genre: ['Aviation', 'Space', 'History'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating account of a crucial chapter in aerospace history.',
+    link: 'https://www.amazon.com/X-15-Rocket-Plane-Flying-First/dp/0803228406'
+  },
+  {
+    title: 'Sex at Dawn',
+    author: 'Christopher Ryan, Cacilda Jetha',
+    description: 'A controversial examination of human sexuality and monogamy from an evolutionary perspective.',
+    genre: ['Science', 'Anthropology', 'Psychology'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Thought-provoking challenge to conventional views of human sexuality.',
+    link: 'https://www.amazon.com/Sex-Dawn-Stray-Modern-Relationships/dp/0061707813'
+  },
+  {
+    title: 'The Pluto Files',
+    author: 'Neil deGrasse Tyson',
+    description: 'The controversial story of Pluto\'s demotion from planetary status and its cultural impact.',
+    genre: ['Science', 'Astronomy', 'Popular Science'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Engaging look at the Pluto controversy and how science evolves.',
+    link: 'https://www.amazon.com/Pluto-Files-Rise-Americas-Favorite/dp/0393337324'
+  },
+  {
+    title: 'The Story of Philosophy',
+    author: 'Will Durant',
+    description: 'A comprehensive overview of major philosophers and their ideas throughout history.',
+    genre: ['Philosophy', 'History', 'Biography'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Masterful introduction to philosophical thought and its development.',
+    link: 'https://www.amazon.com/Story-Philosophy-Opinions-Greater-Philosophers/dp/0671739164'
+  },
+  {
+    title: 'The Lessons of History',
+    author: 'Will and Ariel Durant',
+    description: 'A concise survey of human history and the patterns that emerge from studying civilizations.',
+    genre: ['History', 'Philosophy', 'Social Science'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Insightful distillation of historical patterns and their modern relevance.',
+    link: 'https://www.amazon.com/Lessons-History-Will-Durant/dp/143914995X'
+  },
+  {
+    title: 'A History of the English Language',
+    author: 'Professor Michael Drout',
+    description: 'A comprehensive exploration of how English evolved from its origins to modern usage.',
+    genre: ['Linguistics', 'History', 'Education'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating journey through the development and evolution of English.',
+    link: 'https://www.amazon.com/Modern-Scholar-History-English-Language/dp/B00D8HYQDE'
+  },
+  {
+    title: 'The ONE Thing',
+    author: 'Gary Keller, Jay Papasan',
+    description: 'A guide to achieving extraordinary results by focusing on the single most important task.',
+    genre: ['Self-Help', 'Business', 'Productivity'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Powerful concept about the importance of focused prioritization.',
+    link: 'https://www.amazon.com/ONE-Thing-Surprisingly-Extraordinary-Results/dp/1885167776'
+  },
+  {
+    title: 'The Vikings',
+    author: 'Kenneth W. Harl',
+    description: 'An in-depth examination of Viking society, culture, and their impact on medieval Europe.',
+    genre: ['History', 'Medieval Studies', 'Cultural Studies'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Comprehensive and engaging exploration of Viking civilization.',
+    link: 'https://www.amazon.com/Vikings-Kenneth-W-Harl/dp/B00DHKJ6DI'
+  },
+  {
+    title: 'Ready Player One',
+    author: 'Ernest Cline',
+    description: 'A science fiction adventure set in a virtual reality world filled with 1980s pop culture references.',
+    genre: ['Science Fiction', 'Adventure', 'Pop Culture'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Entertaining blend of gaming culture, nostalgia, and future tech.',
+    link: 'https://www.amazon.com/Ready-Player-One-Ernest-Cline/dp/0307887448'
+  },
+  {
+    title: 'Our Mathematical Universe',
+    author: 'Max Tegmark',
+    description: 'An exploration of how mathematics may be the fundamental reality of the cosmos.',
+    genre: ['Science', 'Physics', 'Cosmology'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Thought-provoking perspective on the mathematical nature of reality.',
+    link: 'https://www.amazon.com/Our-Mathematical-Universe-Ultimate-Reality/dp/0307744256'
+  },
+  {
+    title: 'The Richest Man in Babylon',
+    author: 'George S. Clason',
+    description: 'Ancient Babylonian parables offering timeless financial wisdom and money management principles.',
+    genre: ['Finance', 'Self-Help', 'Business'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Classic financial wisdom presented through engaging parables.',
+    link: 'https://www.amazon.com/Richest-Man-Babylon-George-Clason/dp/1505339111'
+  },
+  {
+    title: 'Wizard: The Life and Times of Nikola Tesla',
+    author: 'Marc J. Seifer',
+    description: 'A comprehensive biography of the brilliant and eccentric inventor Nikola Tesla.',
+    genre: ['Biography', 'Science', 'History'],
+    status: 'Read',
+    rating: 3,
+    thoughts: 'Detailed but sometimes dense biography of a fascinating inventor.',
+    link: 'https://www.amazon.com/Wizard-Times-Nikola-Tesla-Biography/dp/0806539968'
+  },
+  {
+    title: 'Lost at Sea',
+    author: 'Jon Ronson',
+    description: 'A collection of investigative journalism exploring strange and mysterious human stories.',
+    genre: ['Journalism', 'Non-Fiction', 'True Stories'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating collection of unusual and compelling human stories.',
+    link: 'https://www.amazon.com/Lost-Sea-Jon-Ronson-Mysteries/dp/1594631956'
+  },
+  {
+    title: 'Ender\'s Game',
+    author: 'Orson Scott Card',
+    description: 'A science fiction classic about a child prodigy trained to defend Earth from alien invasion.',
+    genre: ['Science Fiction', 'Military Fiction', 'Young Adult'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant exploration of leadership, strategy, and moral complexity.',
+    link: 'https://www.amazon.com/Enders-Game-Ender-Quintet-Book/dp/0812550706'
+  },
+  {
+    title: 'Thinking, Fast and Slow',
+    author: 'Daniel Kahneman',
+    description: 'A groundbreaking exploration of the two systems that drive how we think and make decisions.',
+    genre: ['Psychology', 'Behavioral Economics', 'Science'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Revolutionary insights into human decision-making and cognitive biases.',
+    link: 'https://www.amazon.com/Thinking-Fast-Slow-Daniel-Kahneman/dp/0374533555'
+  },
+  {
+    title: 'Mastery',
+    author: 'Robert Greene',
+    description: 'An examination of what it takes to achieve mastery in any field through studying historical masters.',
+    genre: ['Self-Help', 'Psychology', 'Biography'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Profound insights into the universal principles of achieving excellence.',
+    link: 'https://www.amazon.com/Mastery-Robert-Greene/dp/014312417X'
+  },
+  {
+    title: 'Red Moon Rising',
+    author: 'Matthew Brzezinski',
+    description: 'The dramatic story of Sputnik\'s launch and how it transformed the Cold War into the Space Race.',
+    genre: ['History', 'Space', 'Cold War'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Fascinating account of the political and technological race to space.',
+    link: 'https://www.amazon.com/Red-Moon-Rising-Sputnik-Rivals/dp/0805087508'
+  },
+  {
+    title: 'The Men Who Stare at Goats',
+    author: 'Jon Ronson',
+    description: 'An investigation into the U.S. military\'s exploration of psychic abilities and psychological warfare.',
+    genre: ['Non-Fiction', 'Military History', 'Investigative Journalism'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Bizarre and captivating exploration of military psychological experiments.',
+    link: 'https://www.amazon.com/Men-Who-Stare-Goats/dp/1451665970'
+  },
+  {
+    title: 'Hell\'s Angels',
+    author: 'Hunter S. Thompson',
+    description: 'A firsthand account of Thompson\'s experiences with the Hell\'s Angels motorcycle club.',
+    genre: ['Journalism', 'Biography', 'Cultural Studies'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Raw and unflinching portrayal of counterculture America.',
+    link: 'https://www.amazon.com/Hells-Angels-Strange-Terrible-Saga/dp/0345410084'
+  },
+  {
+    title: 'The Psychopath Test',
+    author: 'Jon Ronson',
+    description: 'An exploration of the mental health industry and the nature of psychopathy.',
+    genre: ['Psychology', 'Non-Fiction', 'Science'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Engaging investigation into the definition and diagnosis of psychopathy.',
+    link: 'https://www.amazon.com/Psychopath-Test-Journey-Through-Industry/dp/1594485755'
+  },
+  {
+    title: 'Going Clear',
+    author: 'Lawrence Wright',
+    description: 'An in-depth investigation into the Church of Scientology and its influence.',
+    genre: ['Religion', 'Investigative Journalism', 'History'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Comprehensive and revealing examination of Scientology\'s history and practices.',
+    link: 'https://www.amazon.com/Going-Clear-Scientology-Hollywood-Prison/dp/0307745309'
+  },
+  {
+    title: 'The Four Pillars of Investing',
+    author: 'William Bernstein',
+    description: 'A comprehensive guide to building a solid investment portfolio strategy.',
+    genre: ['Finance', 'Investment', 'Economics'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Essential framework for understanding investment fundamentals.',
+    link: 'https://www.amazon.com/Four-Pillars-Investing-Building-Portfolio/dp/0071747052'
+  },
+  {
+    title: 'The Black Swan',
+    author: 'Nassim Nicholas Taleb',
+    description: 'An analysis of rare, unpredictable events and their massive impact on society.',
+    genre: ['Economics', 'Philosophy', 'Psychology'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Revolutionary perspective on uncertainty and probability.',
+    link: 'https://www.amazon.com/Black-Swan-Improbable-Robustness-Fragility/dp/081297381X'
+  },
+  {
+    title: 'Moonwalking with Einstein',
+    author: 'Joshua Foer',
+    description: 'A journey into the art and science of memory improvement techniques.',
+    genre: ['Science', 'Psychology', 'Self-Help'],
+    status: 'Read',
+    rating: 4,
+    thoughts: 'Fascinating exploration of memory techniques and their practical applications.',
+    link: 'https://www.amazon.com/Moonwalking-Einstein-Science-Remembering-Everything/dp/0143120530'
+  },
+  {
+    title: 'Kill Decision',
+    author: 'Daniel Suarez',
+    description: 'A techno-thriller about autonomous weapons and artificial intelligence.',
+    genre: ['Science Fiction', 'Techno-Thriller', 'Technology'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Gripping exploration of AI and autonomous warfare.',
+    link: 'https://www.amazon.com/Kill-Decision-Daniel-Suarez/dp/0451417704'
+  },
+  {
+    title: 'In Defense of Food',
+    author: 'Michael Pollan',
+    description: 'An examination of modern food culture and healthy eating principles.',
+    genre: ['Food Science', 'Health', 'Social Commentary'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Compelling argument for returning to simple, whole-food eating.',
+    link: 'https://www.amazon.com/Defense-Food-Eaters-Manifesto/dp/0143114964'
+  },
+  {
+    title: 'Freedom™',
+    author: 'Daniel Suarez',
+    description: 'The sequel to Daemon, continuing the story of an AI-driven transformation of society.',
+    genre: ['Science Fiction', 'Techno-Thriller', 'Technology'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Thrilling conclusion to the Daemon series.',
+    link: 'https://www.amazon.com/Freedom-TM-Daniel-Suarez/dp/0451231899'
+  },
+  {
+    title: 'Daemon',
+    author: 'Daniel Suarez',
+    description: 'A techno-thriller about an AI system that begins to reshape society after its creator\'s death.',
+    genre: ['Science Fiction', 'Techno-Thriller', 'Technology'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Brilliant exploration of technology\'s potential to transform society.',
+    link: 'https://www.amazon.com/Daemon-Daniel-Suarez/dp/0451228731'
+  },
+  {
+    title: 'Dirt',
+    author: 'David R. Montgomery',
+    description: 'An examination of how soil management has influenced the rise and fall of civilizations.',
+    genre: ['Science', 'History', 'Environmental Studies'],
+    status: 'Read',
+    rating: 5,
+    thoughts: 'Eye-opening perspective on the critical role of soil in human civilization.',
+    link: 'https://www.amazon.com/Dirt-Civilizations-David-R-Montgomery/dp/0520272900'
+  }
+];
+
+export default function ReadingPage() {
+  const groupedBooks = {
+    'Currently Reading': books.filter(book => book.status === 'Currently Reading'),
+    'Read': books.filter(book => book.status === 'Read'),
+    'Want to Read': books.filter(book => book.status === 'Want to Read')
+  };
+
+  return (
+    <div className="container-wrapper py-16">
+      <h1 className="section-title mb-8">Reading List</h1>
+      
+      <div className="prose prose-invert prose-lg mb-12">
+        <p>
+          Books are windows to new worlds, sources of inspiration, and catalysts for creativity. 
+          Here's a curated list of books that have shaped my thinking, along with some that I'm excited to explore.
+        </p>
+      </div>
+
+      {Object.entries(groupedBooks).map(([status, statusBooks]) => (
+        statusBooks.length > 0 && (
+          <div key={status} className="mb-16">
+            <h2 className="text-2xl font-bold text-[var(--primary)] mb-6">{status}</h2>
+            <div className="grid gap-8">
+              {statusBooks.map((book, index) => (
+                <div key={index} className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)]">
+                  <div className="flex flex-col">
+                    <div className="flex items-start justify-between gap-4 mb-2">
+                      <div>
+                        <h3 className="text-xl font-bold text-[var(--foreground)]">
+                          {book.link ? (
+                            <Link 
+                              href={book.link} 
+                              target="_blank"
+                              className="hover:text-[var(--primary)] transition-colors"
+                            >
+                              {book.title}
+                            </Link>
+                          ) : (
+                            book.title
+                          )}
+                        </h3>
+                        <p className="text-[var(--foreground)]/60">by {book.author}</p>
+                      </div>
+                      {book.rating && (
+                        <div className="flex gap-1">
+                          {[...Array(book.rating)].map((_, i) => (
+                            <span key={i} className="text-yellow-400">★</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    
+                    <p className="text-[var(--foreground)]/90 mb-4">{book.description}</p>
+                    
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {book.genre.map((tag, tagIndex) => (
+                        <span
+                          key={tagIndex}
+                          className="px-2 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded text-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    {book.thoughts && (
+                      <div className="mt-4 pt-4 border-t border-[var(--primary)]/20">
+                        <p className="text-[var(--foreground)]/80 italic">
+                          "{book.thoughts}"
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ))}
+    </div>
+  );
+}
