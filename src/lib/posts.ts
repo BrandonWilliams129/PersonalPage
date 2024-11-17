@@ -26,18 +26,17 @@ export function getAllPosts(): BlogPost[] {
       const fileContents = fs.readFileSync(fullPath, 'utf8');
 
       // Use gray-matter to parse the post metadata section
-      const { data, content } = matter(fileContents);
+      const { data } = matter(fileContents);
 
       // Combine the data with the slug
       return {
         slug,
-        content,
-        ...(data as { title: string; date: string; description: string }),
+        ...data,
       };
     });
 
   // Sort posts by date
-  return allPostsData.sort((a, b) => {
+  return allPostsData.sort((a: any, b: any) => {
     if (a.date < b.date) {
       return 1;
     } else {
@@ -55,9 +54,9 @@ export function getPostBySlug(slug: string): BlogPost | null {
     return {
       slug,
       content,
-      ...(data as { title: string; date: string; description: string }),
+      ...data,
     };
-  } catch (e) {
+  } catch (error) {
     return null;
   }
 }

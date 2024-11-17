@@ -1,10 +1,23 @@
-import { getPostBySlug } from '@/lib/posts';
+import { getAllPosts, getPostBySlug } from '@/lib/posts';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Link from 'next/link';
 import { mdxComponents } from '@/components/mdx/MDXComponents';
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+interface PageProps {
+  params: {
+    slug: string
+  }
+}
+
+export async function generateStaticParams() {
+  const posts = getAllPosts()
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
+
+export default async function BlogPost({ params }: PageProps) {
+  const post = await getPostBySlug(params.slug);
 
   if (!post) {
     return (
