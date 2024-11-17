@@ -1,7 +1,7 @@
 import { getAllPosts, getPostBySlug } from '@/lib/posts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
-import { MDXComponents } from '@/components/mdx/MDXComponents'
+import { mdxComponents } from '@/components/mdx/MDXComponents'
 
 interface PageProps {
   params: {
@@ -45,7 +45,7 @@ export default async function BlogPost({ params }: PageProps) {
         <h1 className="text-4xl font-bold mb-4 text-[var(--primary)]">{post.title}</h1>
         <p className="text-[var(--foreground)]/60 mb-8">{new Date(post.date).toLocaleDateString()}</p>
         <div className="mt-8">
-          {post.content && <MDXRemote source={post.content} components={MDXComponents} />}
+          {post.content && <MDXRemote source={post.content} components={mdxComponents} />}
         </div>
       </article>
     </div>
