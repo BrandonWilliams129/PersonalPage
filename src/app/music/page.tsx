@@ -15,35 +15,35 @@ const songs: Song[] = [
     title: 'Voice',
     description: 'An AI-assisted composition exploring the boundaries between human vocals and synthetic soundscapes, created using Suno AI.',
     date: 'December 2023',
-    audioSrc: '/media/music/Voice.mp3',
+    audioSrc: '/media/music/Voice .mp3',
     imageSrc: '/images/Voice.jpeg'
   },
   {
     title: 'Chin UP',
     description: 'A motivational anthem about perseverance and resilience, blending punk energy with modern AI production.',
     date: 'January 2024',
-    audioSrc: '/media/music/ChinUP.mp3',
+    audioSrc: '/media/music/Chin up.mp3',
     imageSrc: '/images/ChinUP.jpeg'
   },
   {
     title: 'Hammer of War',
     description: 'A heavy-hitting track that combines aggressive rhythms with epic orchestral elements, showcasing the versatility of AI music production.',
     date: 'February 2024',
-    audioSrc: '/media/music/HammerofWar.mp3',
+    audioSrc: '/media/music/Hammer of war.mp3',
     imageSrc: '/images/HammerOfWar.jfif'
   },
   {
     title: 'Paper Hearts',
     description: 'An emotional journey through love and loss, featuring a unique blend of acoustic and electronic elements.',
     date: 'March 2024',
-    audioSrc: '/media/music/PaperHearts.mp3',
+    audioSrc: '/media/music/Paper Hearts.mp3',
     imageSrc: '/images/PaperHearts.jfif'
   },
   {
     title: 'Grit Doesn\'t Glitter',
     description: 'Raw and unfiltered, this track explores the less glamorous side of determination and hard work.',
     date: 'March 2024',
-    audioSrc: '/media/music/GritDoesntGlitter.mp3',
+    audioSrc: '/media/music/Grit doesn\'t Glitter .mp3',
     imageSrc: '/images/GritDontGlitter.jfif'
   },
   {
