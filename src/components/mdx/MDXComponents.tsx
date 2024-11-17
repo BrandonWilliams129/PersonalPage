@@ -16,7 +16,7 @@ const CustomImage = ({ src, alt, width, height }: CustomImageProps) => {
   // Handle both absolute and relative URLs
   const imageSrc = src.startsWith('http') 
     ? src 
-    : `${GITHUB_PAGES_URL}${src.startsWith('/') ? src : `/${src}`}`;
+    : `${GITHUB_PAGES_URL}${src}`;
 
   return (
     <>

@@ -11,7 +11,7 @@ export default function AudioPlayer({ src, title }: AudioPlayerProps) {
   // Handle both absolute and relative URLs
   const audioSrc = src.startsWith('http')
     ? src
-    : `${GITHUB_PAGES_URL}${src.startsWith('/') ? src : `/${src}`}`;
+    : `${GITHUB_PAGES_URL}${src}`;
 
   return (
     <div className="my-8 p-4 bg-[var(--secondary)] rounded-lg">
