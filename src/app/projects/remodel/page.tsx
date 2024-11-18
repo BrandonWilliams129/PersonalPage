@@ -30,16 +30,16 @@ export default function RemodelPage() {
       title: 'Bedroom',
       description: 'Modernized space with improved lighting and organization',
       beforeImages: [
-        '/PersonalPage/images/projects/remodel/bed-room-progress-(1).jpg',
-        '/PersonalPage/images/projects/remodel/bed-room-progress-(2).jpg',
-        '/PersonalPage/images/projects/remodel/bed-room-progress-(3).jpg',
-        '/PersonalPage/images/projects/remodel/bed-room-progress-(4).jpg'
+        '/PersonalPage/images/projects/remodel/bed-room-progress (1).jpg',
+        '/PersonalPage/images/projects/remodel/bed-room-progress (2).jpg',
+        '/PersonalPage/images/projects/remodel/bed-room-progress (3).jpg',
+        '/PersonalPage/images/projects/remodel/bed-room-progress (4).jpg'
       ],
       afterImages: [
-        '/PersonalPage/images/projects/remodel/bed-room-finished-(1).jpg',
-        '/PersonalPage/images/projects/remodel/bed-room-finished-(2).jpg',
-        '/PersonalPage/images/projects/remodel/bed-room-finished-(3).jpg',
-        '/PersonalPage/images/projects/remodel/bed-room-finished-(4).jpg'
+        '/PersonalPage/images/projects/remodel/Bed-room_finished-(1).jpg',
+        '/PersonalPage/images/projects/remodel/Bed-room_finished-(2).jpg',
+        '/PersonalPage/images/projects/remodel/Bed-room_finished-(3).jpg',
+        '/PersonalPage/images/projects/remodel/Bed-room_finished-(4).jpg'
       ]
     }
   ];
