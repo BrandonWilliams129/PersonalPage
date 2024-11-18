@@ -14,7 +14,7 @@ const songs: Song[] = [
   {
     title: 'Against The Wake',
     description: 'A powerful exploration of resilience and determination, featuring dynamic instrumentation and emotive vocals created with AI.',
-    date: 'March 19, 2024',
+    date: 'November 18, 2024',
     audioSrc: '/media/music/AgainstTheWake.mp3',
     imageSrc: '/images/AgainstTheWake.jpeg'
   },
