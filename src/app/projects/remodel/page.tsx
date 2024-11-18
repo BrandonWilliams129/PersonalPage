@@ -2,22 +2,45 @@ import React from 'react';
 import Image from 'next/image';
 
 interface ImageSet {
-  before: string;
-  after: string;
+  title: string;
   description: string;
+  beforeImages: string[];
+  afterImages: string[];
 }
 
 export default function RemodelPage() {
   const rooms: ImageSet[] = [
     {
-      before: '/PersonalPage/images/projects/remodel/Living-room-progress-(1).jpg',
-      after: '/PersonalPage/images/projects/remodel/Living-room-finished-(1).jpg',
-      description: 'Living Room Transformation'
+      title: 'Living Room',
+      description: 'Complete transformation with modern design and smart lighting',
+      beforeImages: [
+        '/PersonalPage/images/projects/remodel/Living-room-progress-(1).jpg',
+        '/PersonalPage/images/projects/remodel/Living-room-progress-(2).jpg',
+        '/PersonalPage/images/projects/remodel/Living-room-progress-(3).jpg',
+        '/PersonalPage/images/projects/remodel/Living-room-progress-(4).jpg'
+      ],
+      afterImages: [
+        '/PersonalPage/images/projects/remodel/Living-room-finished-(1).jpg',
+        '/PersonalPage/images/projects/remodel/Living-room-finished-(2).jpg',
+        '/PersonalPage/images/projects/remodel/Living-room-finished-(3).jpg',
+        '/PersonalPage/images/projects/remodel/Living-room-finished-(4).jpg'
+      ]
     },
     {
-      before: '/PersonalPage/images/projects/remodel/Bedroom-progress-(1).jpg',
-      after: '/PersonalPage/images/projects/remodel/Bedroom-finished-(1).jpg',
-      description: 'Bedroom Transformation'
+      title: 'Bedroom',
+      description: 'Modernized space with improved lighting and organization',
+      beforeImages: [
+        '/PersonalPage/images/projects/remodel/Bedroom-progress-(1).jpg',
+        '/PersonalPage/images/projects/remodel/Bedroom-progress-(2).jpg',
+        '/PersonalPage/images/projects/remodel/Bedroom-progress-(3).jpg',
+        '/PersonalPage/images/projects/remodel/Bedroom-progress-(4).jpg'
+      ],
+      afterImages: [
+        '/PersonalPage/images/projects/remodel/Bedroom-finished-(1).jpg',
+        '/PersonalPage/images/projects/remodel/Bedroom-finished-(2).jpg',
+        '/PersonalPage/images/projects/remodel/Bedroom-finished-(3).jpg',
+        '/PersonalPage/images/projects/remodel/Bedroom-finished-(4).jpg'
+      ]
     }
   ];
 
@@ -33,36 +56,48 @@ export default function RemodelPage() {
     <div className="container-wrapper py-16">
       <h1 className="section-title mb-8">AI-Guided Condo Remodel</h1>
       
-      <section>
-        <h2 className="text-2xl font-bold mb-6">Before & After</h2>
-        <div className="grid md:grid-cols-2 gap-8">
-          {rooms.map((room, index) => (
-            <div key={index} className="space-y-4">
-              <h3 className="text-xl font-semibold">{room.description}</h3>
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                <Image
-                  src={room.before}
-                  alt={`${room.description} Before`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                  priority={index === 0}
-                />
-              </div>
-              <div className="relative aspect-video w-full overflow-hidden rounded-lg">
-                <Image
-                  src={room.after}
-                  alt={`${room.description} After`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover"
-                  priority={index === 0}
-                />
+      {rooms.map((room, roomIndex) => (
+        <section key={roomIndex} className="mb-16">
+          <h2 className="text-2xl font-bold mb-6">{room.title}</h2>
+          <p className="text-[var(--foreground)]/80 mb-6">{room.description}</p>
+          
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Before</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {room.beforeImages.map((src, index) => (
+                  <div key={index} className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+                    <Image
+                      src={src}
+                      alt={`${room.title} Before ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
-        </div>
-      </section>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-4">After</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {room.afterImages.map((src, index) => (
+                  <div key={index} className="relative aspect-[4/3] w-full overflow-hidden rounded-lg">
+                    <Image
+                      src={src}
+                      alt={`${room.title} After ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      className="object-cover hover:scale-110 transition-transform duration-300"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
 
       <section className="mt-16">
         <h2 className="text-2xl font-bold mb-6">Stable Diffusion Design Concepts</h2>
@@ -74,7 +109,7 @@ export default function RemodelPage() {
                 alt={`AI Design Concept ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                className="object-cover"
+                className="object-cover hover:scale-110 transition-transform duration-300"
               />
             </div>
           ))}
