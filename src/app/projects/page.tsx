@@ -19,7 +19,7 @@ const projects: Project[] = [
   {
     title: 'AI-Guided Condo Remodel',
     description: 'A complete transformation of my living space using AI as the interior designer. From Stable Diffusion design concepts to smart home integration, this project showcases the practical application of AI in home improvement.',
-    imageSrc: '/images/projects/remodel/Living-room-finished (1).jpg',
+    imageSrc: '/images/projects/remodel/Living-room-finished-(1).jpg',
     tags: ['AI Design', 'Home Improvement', 'Stable Diffusion', 'Smart Home'],
     links: {
       play: '/projects/remodel'
@@ -116,10 +116,10 @@ export default function ProjectsPage() {
                   {project.links?.play && (
                     <Link
                       href={project.links.play}
-                      target="_blank"
+                      target={project.links.play.startsWith('http') ? '_blank' : undefined}
                       className="px-4 py-2 bg-[var(--primary)] text-[var(--background)] rounded hover:opacity-90 transition-opacity"
                     >
-                      Play Game
+                      {project.title === 'AI-Guided Condo Remodel' ? 'Take Tour' : 'Play Game'}
                     </Link>
                   )}
                   {project.links?.source && (
