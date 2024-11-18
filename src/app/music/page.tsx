@@ -12,6 +12,13 @@ interface Song {
 
 const songs: Song[] = [
   {
+    title: 'Against The Wake',
+    description: 'A powerful exploration of resilience and determination, featuring dynamic instrumentation and emotive vocals created with AI.',
+    date: 'March 19, 2024',
+    audioSrc: '/media/music/AgainstTheWake.mp3',
+    imageSrc: '/images/AgainstTheWake.jpeg'
+  },
+  {
     title: 'Voice',
     description: 'An AI-assisted composition exploring the boundaries between human vocals and synthetic soundscapes, created using Suno AI.',
     date: 'December 2023',
