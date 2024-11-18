@@ -52,7 +52,7 @@ const projects: Project[] = [
   {
     title: 'AI-Guided Condo Remodel',
     description: 'A complete transformation of my living space using AI as the interior designer. From Stable Diffusion design concepts to smart home integration, this project showcases the practical application of AI in home improvement.',
-    imageSrc: '/PersonalPage/images/projects/remodel/Living-room-finished-(1).jpg',
+    imageSrc: '/images/projects/remodel/Living-room-finished-(1).jpg',
     tags: ['AI Design', 'Home Improvement', 'Stable Diffusion', 'Smart Home'],
     links: {
       play: '/projects/remodel'
