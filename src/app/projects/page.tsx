@@ -17,17 +17,6 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: 'AI-Guided Condo Remodel',
-    description: 'A complete transformation of my living space using AI as the interior designer. From Stable Diffusion design concepts to smart home integration, this project showcases the practical application of AI in home improvement.',
-    imageSrc: '/images/projects/remodel/Living-room-finished-(1).jpg',
-    tags: ['AI Design', 'Home Improvement', 'Stable Diffusion', 'Smart Home'],
-    links: {
-      play: '/projects/remodel'
-    },
-    status: 'Completed',
-    date: 'December 2024'
-  },
-  {
     title: 'Girls Name or Drug',
     description: 'A fun and challenging quiz game where players must guess whether a given word is a girl\'s name or the name of a pharmaceutical drug. Test your knowledge and prepare to be surprised!',
     imageSrc: '/images/projects/girls-name-or-drug.png',
@@ -59,6 +48,17 @@ const projects: Project[] = [
     },
     status: 'Completed',
     date: 'October 2024'
+  },
+  {
+    title: 'AI-Guided Condo Remodel',
+    description: 'A complete transformation of my living space using AI as the interior designer. From Stable Diffusion design concepts to smart home integration, this project showcases the practical application of AI in home improvement.',
+    imageSrc: '/images/projects/remodel/Living-room-finished-(1).jpg',
+    tags: ['AI Design', 'Home Improvement', 'Stable Diffusion', 'Smart Home'],
+    links: {
+      play: '/projects/remodel'
+    },
+    status: 'Completed',
+    date: 'June 2023'
   }
 ];
 
