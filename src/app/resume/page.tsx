@@ -1,24 +1,26 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaFileDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaFileDownload, FaTools, FaLaptopCode, FaCertificate, FaGraduationCap, FaBriefcase } from 'react-icons/fa';
 
 export default function ResumePage() {
   return (
-    <div className="container-wrapper py-16">
-      {/* Header Section */}
-      <div className="mb-12">
-        <h1 className="section-title mb-6">Brandon Williams</h1>
-        <div className="flex flex-wrap gap-6 text-[var(--foreground)]/80">
+    <div className="container-wrapper py-16 max-w-5xl mx-auto px-4">
+      {/* Header Section with Gradient Background */}
+      <div className="relative mb-12 p-8 rounded-2xl bg-gradient-to-r from-[var(--primary)]/10 to-[var(--primary)]/5 backdrop-blur-sm border border-[var(--primary)]/20">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-[var(--primary)]/70">
+          Brandon Williams
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-[var(--foreground)]/80">
           <Link 
             href="mailto:Brandon0129@gmail.com" 
-            className="flex items-center gap-2 hover:text-[var(--primary)] transition-colors"
+            className="flex items-center gap-2 hover:text-[var(--primary)] transition-all hover:translate-x-1"
           >
             <FaEnvelope className="text-[var(--primary)]" />
             Brandon0129@gmail.com
           </Link>
           <Link 
             href="tel:248-688-5745" 
-            className="flex items-center gap-2 hover:text-[var(--primary)] transition-colors"
+            className="flex items-center gap-2 hover:text-[var(--primary)] transition-all hover:translate-x-1"
           >
             <FaPhone className="text-[var(--primary)]" />
             248-688-5745
@@ -30,7 +32,7 @@ export default function ResumePage() {
           <Link 
             href="https://linkedin.com/in/brandon-williams-00573a123" 
             target="_blank"
-            className="flex items-center gap-2 hover:text-[var(--primary)] transition-colors"
+            className="flex items-center gap-2 hover:text-[var(--primary)] transition-all hover:translate-x-1"
           >
             <FaLinkedin className="text-[var(--primary)]" />
             LinkedIn
@@ -38,7 +40,7 @@ export default function ResumePage() {
           <Link 
             href="https://github.com/BrandonWilliams129" 
             target="_blank"
-            className="flex items-center gap-2 hover:text-[var(--primary)] transition-colors"
+            className="flex items-center gap-2 hover:text-[var(--primary)] transition-all hover:translate-x-1"
           >
             <FaGithub className="text-[var(--primary)]" />
             GitHub
@@ -46,7 +48,7 @@ export default function ResumePage() {
           <Link 
             href="/resume.pdf" 
             target="_blank"
-            className="flex items-center gap-2 hover:text-[var(--primary)] transition-colors"
+            className="flex items-center gap-2 hover:text-[var(--primary)] transition-all hover:translate-x-1"
           >
             <FaFileDownload className="text-[var(--primary)]" />
             Download PDF
@@ -56,32 +58,35 @@ export default function ResumePage() {
 
       {/* Experience Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-[var(--primary)] mb-6">Professional Experience</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <FaBriefcase className="text-2xl text-[var(--primary)]" />
+          <h2 className="text-2xl font-bold">Professional Experience</h2>
+        </div>
         
-        <div className="space-y-8">
-          <div className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow">
+        <div className="space-y-6">
+          <div className="group p-6 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5">
             <div className="flex flex-wrap justify-between items-start mb-2">
-              <h3 className="text-xl font-semibold">Weld Technician</h3>
+              <h3 className="text-xl font-semibold group-hover:text-[var(--primary)] transition-colors">Weld Technician</h3>
               <div className="text-[var(--foreground)]/60">May 2014 – Present</div>
             </div>
             <div className="text-lg mb-3 text-[var(--primary)]">Autokiniton • Clinton Township, MI</div>
             <ul className="list-disc list-inside space-y-2 text-[var(--foreground)]/80">
               <li>Lead diagnostic and repair operations for advanced automation systems, optimizing weld timers and transformers</li>
               <li>Program weld schedules and fine-tune Fanuc and Motoman robot programs to enhance performance</li>
-              <li>Oversee installation and relocation of production cells, managing setup tasks including plumbing and electrical wiring</li>
+              <li>Oversee installation and relocation of production cells, managing setup tasks including plumbing and electrical wiring to ensure seamless integration and operational efficiency</li>
             </ul>
           </div>
 
-          <div className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow">
+          <div className="group p-6 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5">
             <div className="flex flex-wrap justify-between items-start mb-2">
-              <h3 className="text-xl font-semibold">Quality Technician</h3>
+              <h3 className="text-xl font-semibold group-hover:text-[var(--primary)] transition-colors">Quality Technician</h3>
               <div className="text-[var(--foreground)]/60">May 2009 – May 2013</div>
             </div>
             <div className="text-lg mb-3 text-[var(--primary)]">Tower International • Clinton Township, MI</div>
             <ul className="list-disc list-inside space-y-2 text-[var(--foreground)]/80">
-              <li>Conducted inspections using check fixtures, precision measuring instruments, and visual assessments</li>
+              <li>Conducted inspections of assembly units using check fixtures, precision measuring instruments, and visual assessments</li>
               <li>Maintained documentation of quality metrics, facilitating data-driven analysis</li>
-              <li>Collaborated with production and engineering teams on quality standards and improvement initiatives</li>
+              <li>Collaborated with production and engineering teams to align on quality standards and strategize continuous improvement initiatives</li>
             </ul>
           </div>
         </div>
@@ -89,39 +94,50 @@ export default function ResumePage() {
 
       {/* Education Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-[var(--primary)] mb-6">Education</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <FaGraduationCap className="text-2xl text-[var(--primary)]" />
+          <h2 className="text-2xl font-bold">Education</h2>
+        </div>
         
-        <div className="space-y-8">
-          <div className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow">
+        <div className="space-y-6">
+          <div className="group p-6 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5">
             <div className="flex flex-wrap justify-between items-start mb-2">
-              <h3 className="text-xl font-semibold">Industrial Technology</h3>
+              <h3 className="text-xl font-semibold group-hover:text-[var(--primary)] transition-colors">Industrial Technology</h3>
               <div className="text-[var(--foreground)]/60">Graduated June 2017</div>
             </div>
             <div className="text-lg mb-3 text-[var(--primary)]">Macomb Community College • Roseville, MI</div>
             <ul className="list-disc list-inside space-y-2 text-[var(--foreground)]/80">
               <li>Achieved Dean's List recognition while managing full-time professional commitments</li>
-              <li>Balanced 70-80 hour workweeks with academic pursuits</li>
-              <li>Attained certifications with commendable academic performance</li>
+              <li>Balanced a workload of 70-80 hours per week with academic pursuits, demonstrating strong work ethic</li>
+              <li>Attained certifications and commendable academic performance, reflecting a practical approach to learning</li>
             </ul>
           </div>
 
-          <div className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow">
+          <div className="group p-6 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5">
             <div className="flex flex-wrap justify-between items-start mb-2">
-              <h3 className="text-xl font-semibold">Aviation Science</h3>
+              <h3 className="text-xl font-semibold group-hover:text-[var(--primary)] transition-colors">Aviation Science</h3>
               <div className="text-[var(--foreground)]/60">Graduated June 2003</div>
             </div>
             <div className="text-lg mb-3 text-[var(--primary)]">Central Texas College • Killeen, TX</div>
+            <ul className="list-disc list-inside space-y-2 text-[var(--foreground)]/80">
+              <li>Completed coursework in aerodynamics, aircraft systems, and aviation safety</li>
+              <li>Gained foundational knowledge in aviation operations and management</li>
+              <li>Developed skills applicable to both piloting and aviation maintenance roles</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      {/* Skills & Technologies Section */}
+      {/* Skills Section */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-[var(--primary)] mb-6">Skills & Technologies</h2>
+        <div className="flex items-center gap-3 mb-6">
+          <FaTools className="text-2xl text-[var(--primary)]" />
+          <h2 className="text-2xl font-bold">Skills</h2>
+        </div>
         
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-4">Industrial & Technical</h3>
+          <div className="group p-6 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5">
+            <h3 className="text-xl font-semibold mb-4 group-hover:text-[var(--primary)] transition-colors">Technical Skills</h3>
             <div className="flex flex-wrap gap-2">
               {[
                 'Advanced Automation Systems',
@@ -135,7 +151,7 @@ export default function ResumePage() {
               ].map((skill, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm"
+                  className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm hover:bg-[var(--primary)]/20 transition-colors"
                 >
                   {skill}
                 </span>
@@ -143,24 +159,22 @@ export default function ResumePage() {
             </div>
           </div>
 
-          <div className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow">
-            <h3 className="text-xl font-semibold mb-4">AI & Software Development</h3>
+          <div className="group p-6 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5">
+            <h3 className="text-xl font-semibold mb-4 group-hover:text-[var(--primary)] transition-colors">Professional Skills</h3>
             <div className="flex flex-wrap gap-2">
               {[
-                'AI Integration',
-                'Stable Diffusion',
-                'Suno AI',
-                'Flux',
-                'Web Development',
-                'React',
-                'Next.js',
-                'Tailwind CSS',
-                'GitHub',
-                'AI Prompting'
+                'AI Enthusiasm',
+                'Detail Oriented',
+                'Consistent',
+                'Problem Solving',
+                'Team Leadership',
+                'Process Optimization',
+                'Quality Assurance',
+                'Technical Documentation'
               ].map((skill, index) => (
                 <span
                   key={index}
-                  className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm"
+                  className="px-3 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm hover:bg-[var(--primary)]/20 transition-colors"
                 >
                   {skill}
                 </span>
@@ -171,8 +185,11 @@ export default function ResumePage() {
       </section>
 
       {/* Certifications Section */}
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold text-[var(--primary)] mb-6">Certifications</h2>
+      <section>
+        <div className="flex items-center gap-3 mb-6">
+          <FaCertificate className="text-2xl text-[var(--primary)]" />
+          <h2 className="text-2xl font-bold">Certifications</h2>
+        </div>
         
         <div className="grid md:grid-cols-2 gap-6">
           {[
@@ -201,44 +218,15 @@ export default function ResumePage() {
           ].map((cert, index) => (
             <div
               key={index}
-              className="bg-[var(--secondary)] p-4 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow"
+              className="group p-4 rounded-xl bg-[var(--secondary)]/50 border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg hover:shadow-[var(--primary)]/5"
             >
-              <h3 className="font-semibold text-[var(--primary)]">{cert.title}</h3>
+              <h3 className="font-semibold group-hover:text-[var(--primary)] transition-colors">{cert.title}</h3>
               <div className="text-[var(--foreground)]/80">
                 {cert.issuer}
                 {cert.year && ` • ${cert.year}`}
               </div>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section>
-        <h2 className="text-2xl font-bold text-[var(--primary)] mb-6">Featured Projects</h2>
-        
-        <div className="space-y-4">
-          <Link 
-            href="/projects/remodel"
-            className="block bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow"
-          >
-            <h3 className="text-xl font-semibold mb-2">AI-Guided Condo Remodel</h3>
-            <p className="text-[var(--foreground)]/80">
-              Transformed living space using AI for design visualization and smart home integration.
-              Utilized Stable Diffusion for concept generation and implemented various smart home technologies.
-            </p>
-          </Link>
-
-          <Link 
-            href="/projects"
-            className="block bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)] hover:shadow-lg transition-shadow"
-          >
-            <h3 className="text-xl font-semibold mb-2">Game Development Portfolio</h3>
-            <p className="text-[var(--foreground)]/80">
-              Collection of interactive games developed using modern technologies.
-              Showcases programming skills and creative problem-solving abilities.
-            </p>
-          </Link>
         </div>
       </section>
     </div>
