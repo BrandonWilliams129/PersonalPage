@@ -10,23 +10,23 @@ interface ImageSet {
 export default function RemodelPage() {
   const rooms: ImageSet[] = [
     {
-      before: '/images/projects/remodel/Living-room-progress-(1).jpg',
-      after: '/images/projects/remodel/Living-room-finished-(1).jpg',
+      before: '/PersonalPage/images/projects/remodel/Living-room-progress-(1).jpg',
+      after: '/PersonalPage/images/projects/remodel/Living-room-finished-(1).jpg',
       description: 'Living Room Transformation'
     },
     {
-      before: '/images/projects/remodel/Bedroom-progress-(1).jpg',
-      after: '/images/projects/remodel/Bedroom-finished-(1).jpg',
+      before: '/PersonalPage/images/projects/remodel/Bedroom-progress-(1).jpg',
+      after: '/PersonalPage/images/projects/remodel/Bedroom-finished-(1).jpg',
       description: 'Bedroom Transformation'
     }
   ];
 
   const aiOutputs = [
-    '/images/projects/remodel/SD-bedroom-output-(1).png',
-    '/images/projects/remodel/SD-bedroom-output-(2).png',
-    '/images/projects/remodel/SD-bedroom-output-(3).png',
-    '/images/projects/remodel/SD-bedroom-output-(4).png',
-    '/images/projects/remodel/SD-bedroom-output-(5).png',
+    '/PersonalPage/images/projects/remodel/SD-bedroom-output-(1).png',
+    '/PersonalPage/images/projects/remodel/SD-bedroom-output-(2).png',
+    '/PersonalPage/images/projects/remodel/SD-bedroom-output-(3).png',
+    '/PersonalPage/images/projects/remodel/SD-bedroom-output-(4).png',
+    '/PersonalPage/images/projects/remodel/SD-bedroom-output-(5).png',
   ];
 
   return (
