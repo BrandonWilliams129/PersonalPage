@@ -33,66 +33,52 @@ export default function RemodelPage() {
     <div className="container-wrapper py-16">
       <h1 className="section-title mb-8">AI-Guided Condo Remodel</h1>
       
-      <div className="prose prose-invert prose-lg mb-12">
-        <p>
-          Using AI as my interior designer, I completely transformed my living space. 
-          Starting with Stable Diffusion to generate design concepts, I reimagined my condo 
-          with a modern grey theme. The project involved everything from floor leveling and 
-          wall preparation to installing smart home features.
-        </p>
-      </div>
+      <section>
+        <h2 className="text-2xl font-bold mb-6">Before & After</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          {rooms.map((room, index) => (
+            <div key={index} className="space-y-4">
+              <h3 className="text-xl font-semibold">{room.description}</h3>
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                <Image
+                  src={room.before}
+                  alt={`${room.description} Before`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              </div>
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+                <Image
+                  src={room.after}
+                  alt={`${room.description} After`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                  priority={index === 0}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6">AI Design Process</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {aiOutputs.map((output, index) => (
-            <div key={index} className="relative aspect-video rounded-lg overflow-hidden bg-black">
+      <section className="mt-16">
+        <h2 className="text-2xl font-bold mb-6">Stable Diffusion Design Concepts</h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {aiOutputs.map((src, index) => (
+            <div key={index} className="relative aspect-square w-full overflow-hidden rounded-lg">
               <Image
-                src={output}
+                src={src}
                 alt={`AI Design Concept ${index + 1}`}
                 fill
+                sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 className="object-cover"
               />
             </div>
           ))}
         </div>
-        <p className="mt-4 text-[var(--foreground)]/80">
-          Stable Diffusion helped visualize the potential of the space, generating multiple design concepts
-          that guided the renovation process.
-        </p>
-      </section>
-
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold mb-6">Before & After</h2>
-        {rooms.map((room, index) => (
-          <div key={index} className="mb-12">
-            <h3 className="text-xl font-semibold mb-4">{room.description}</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="relative aspect-video rounded-lg overflow-hidden bg-black">
-                <Image
-                  src={room.before}
-                  alt="Before"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute bottom-4 left-4 bg-black/70 px-3 py-1 rounded">
-                  Before
-                </div>
-              </div>
-              <div className="relative aspect-video rounded-lg overflow-hidden bg-black">
-                <Image
-                  src={room.after}
-                  alt="After"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute bottom-4 left-4 bg-black/70 px-3 py-1 rounded">
-                  After
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
       </section>
 
       <section>
