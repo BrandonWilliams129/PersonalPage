@@ -8,8 +8,11 @@ interface AudioPlayerProps {
 }
 
 export default function AudioPlayer({ src, title }: AudioPlayerProps) {
-  // Handle both absolute and relative URLs
+  // Handle both development and production environments
+  const isDevelopment = process.env.NODE_ENV === 'development';
   const audioSrc = src.startsWith('http')
+    ? src
+    : isDevelopment
     ? src
     : `${GITHUB_PAGES_URL}${encodeURI(src)}`;
 

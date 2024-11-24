@@ -12,11 +12,24 @@ interface Song {
 
 const songs: Song[] = [
   {
+    title: 'Weight of the World',
+    description: 'A powerful and emotive track that explores the burdens we carry and the strength we find to move forward.',
+    date: 'March 2024',
+    audioSrc: '/media/music/Weight of the World.mp3',
+    imageSrc: '/images/Weight of the World.png'
+  },
+  {
     title: 'Against The Wake',
     description: 'A powerful exploration of resilience and determination, featuring dynamic instrumentation and emotive vocals created with AI.',
     date: 'November 18, 2024',
     audioSrc: '/media/music/AgainstTheWake.mp3',
     imageSrc: '/images/AgainstTheWake.jpeg'
+  },
+  {
+    title: 'Blackrtainsout Cu',
+    description: 'An experimental piece that pushes the boundaries of conventional sound, blending dark atmospheres with cutting-edge AI production.',
+    date: 'March 2024',
+    audioSrc: '/media/music/Blackrtainsout Cu.mp3'
   },
   {
     title: 'Voice',
@@ -33,6 +46,12 @@ const songs: Song[] = [
     imageSrc: '/images/ChinUP.jpeg'
   },
   {
+    title: 'Collapse the Sky',
+    description: 'An intense and atmospheric track that combines heavy elements with ethereal soundscapes.',
+    date: 'March 2024',
+    audioSrc: '/media/music/Collapse the Sky.mp3'
+  },
+  {
     title: 'Hammer of War',
     description: 'A heavy-hitting track that combines aggressive rhythms with epic orchestral elements, showcasing the versatility of AI music production.',
     date: 'February 2024',
@@ -45,6 +64,24 @@ const songs: Song[] = [
     date: 'March 2024',
     audioSrc: '/media/music/Paper Hearts.mp3',
     imageSrc: '/images/PaperHearts.jfif'
+  },
+  {
+    title: 'Paper Houses',
+    description: 'A metaphorical exploration of fragile foundations and the structures we build in our lives.',
+    date: 'March 2024',
+    audioSrc: '/media/music/Paper Houses.mp3'
+  },
+  {
+    title: 'Quiet Panic',
+    description: 'A haunting piece that delves into the silent struggles we face, wrapped in atmospheric soundscapes.',
+    date: 'March 2024',
+    audioSrc: '/media/music/Quiet Panic.mp3'
+  },
+  {
+    title: 'Salt in the Water',
+    description: 'A fluid and dynamic composition that explores themes of purification and emotional cleansing.',
+    date: 'March 2024',
+    audioSrc: '/media/music/Salt in the Water.mp3'
   },
   {
     title: 'Grit Doesn\'t Glitter',
