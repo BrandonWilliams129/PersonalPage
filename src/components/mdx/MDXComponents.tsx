@@ -7,19 +7,17 @@ import AudioPlayer from '../AudioPlayer';
 import imageLoader from '@/lib/imageLoader';
 
 const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
-  // Use the same image loader logic
-  const imageSrc = src.startsWith('http') ? src : imageLoader({ src, width: 0 });
-
   return (
     <span className="block my-8">
       <div className="relative aspect-video w-full overflow-hidden rounded-lg">
         <Image
-          src={imageSrc}
+          src={src}
           alt={alt}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
           loader={imageLoader}
+          unoptimized
         />
       </div>
       {alt && (
