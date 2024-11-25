@@ -37,7 +37,7 @@ export default function ReadingPage() {
     )
   };
 
-  const DEFAULT_COVER = '/images/books/default-cover.jfif';
+  const DEFAULT_COVER = '/PersonalPage/images/books/default-cover.jfif';
 
   const getCoverUrl = (book: Book) => {
     // Check for missing or invalid ISBN

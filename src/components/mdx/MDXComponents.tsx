@@ -6,11 +6,16 @@ import { MDXComponents } from 'mdx/types';
 import AudioPlayer from '../AudioPlayer';
 
 const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
+  // Ensure the src has the correct GitHub Pages prefix
+  const imageSrc = src.startsWith('http') || src.startsWith('/PersonalPage/') 
+    ? src 
+    : `/PersonalPage/${src.startsWith('/') ? src.slice(1) : src}`;
+
   return (
     <span className="block my-8">
       <div className="relative aspect-video w-full overflow-hidden rounded-lg">
         <Image
-          src={src}
+          src={imageSrc}
           alt={alt}
           fill
           className="object-cover"
