@@ -4,18 +4,13 @@ export default function imageLoader({ src, width, quality }: { src: string; widt
     return src;
   }
 
-  // Get the base path from environment
-  const basePath = process.env.NODE_ENV === 'production' ? '/PersonalPage' : '';
-  
-  // Clean up the source path
-  let cleanPath = src;
-  // Remove /PersonalPage if it exists
-  cleanPath = cleanPath.replace(/^\/PersonalPage\//, '');
-  // Remove leading slash if it exists
-  cleanPath = cleanPath.replace(/^\//, '');
-  
-  // For production (GitHub Pages), ensure the path starts with /PersonalPage
-  return process.env.NODE_ENV === 'production'
-    ? `${basePath}/${cleanPath}`
-    : `/${cleanPath}`;
+  // For production (GitHub Pages), add /PersonalPage prefix if not present
+  if (process.env.NODE_ENV === 'production' && !src.startsWith('/PersonalPage')) {
+    // Remove any leading slash
+    const cleanPath = src.startsWith('/') ? src.slice(1) : src;
+    return `/PersonalPage/${cleanPath}`;
+  }
+
+  // Return the path as is for development or if it already has the prefix
+  return src;
 }

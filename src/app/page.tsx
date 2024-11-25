@@ -30,7 +30,7 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-square rounded-full overflow-hidden shadow-2xl border-4 border-[var(--primary)]/20">
                 <CustomImage
-                  src="/images/profile.jpg"
+                  src="/PersonalPage/images/profile.jpg"
                   alt="Brandon Williams"
                   width={600}
                   height={600}
@@ -51,7 +51,7 @@ export default function Home() {
             <div className="card group">
               <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6">
                 <CustomImage
-                  src="/images/wintermute.jpg"
+                  src="/PersonalPage/images/wintermute.jpg"
                   alt="Wintermute - Tesla Model 3"
                   width={800}
                   height={600}
@@ -69,7 +69,7 @@ export default function Home() {
             <div className="card group">
               <div className="aspect-[3/2] rounded-xl overflow-hidden mb-6 bg-[var(--secondary)]/20">
                 <CustomImage
-                  src="/images/music.jpg"
+                  src="/PersonalPage/images/music.jpg"
                   alt="Music Production"
                   width={900}
                   height={600}
@@ -89,7 +89,7 @@ export default function Home() {
             <div className="card group">
               <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-[var(--secondary)]/20">
                 <CustomImage
-                  src="/images/books.jpg"
+                  src="/PersonalPage/images/books.jpg"
                   alt="Reading Collection"
                   width={800}
                   height={600}
