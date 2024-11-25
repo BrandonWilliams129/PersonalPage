@@ -142,7 +142,7 @@ export default function Header() {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: mobileMenuOpen ? 1 : 0, y: mobileMenuOpen ? 0 : -20 }}
                 transition={{ duration: 0.2 }}
-                className={`absolute top-full right-0 w-56 mt-2 bg-[var(--background)] border border-[var(--border)] rounded-lg shadow-lg ${
+                className={`absolute top-full right-0 w-56 mt-2 bg-[var(--nav-bg)] backdrop-blur-md border border-[var(--border-color)] rounded-lg shadow-lg overflow-hidden ${
                   mobileMenuOpen ? 'block' : 'hidden'
                 }`}
               >
