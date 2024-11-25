@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { MDXComponents } from 'mdx/types';
 import AudioPlayer from '../AudioPlayer';
+import imageLoader from '@/lib/imageLoader';
 
 const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
   // Use the same image loader logic
