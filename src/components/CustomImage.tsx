@@ -5,10 +5,5 @@ interface CustomImageProps extends Omit<ImageProps, 'src'> {
 }
 
 export default function CustomImage({ src, ...props }: CustomImageProps) {
-  // Handle both absolute and relative URLs
-  const imageSrc = src.startsWith('http')
-    ? src
-    : `https://brandonwilliams129.github.io/PersonalPage${src}`;
-
-  return <Image {...props} src={imageSrc} />;
+  return <Image {...props} src={src} />;
 }

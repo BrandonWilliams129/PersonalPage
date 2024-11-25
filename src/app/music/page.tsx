@@ -106,42 +106,51 @@ const songs: Song[] = [
 
 export default function MusicPage() {
   return (
-    <div className="container-wrapper py-16">
-      <h1 className="section-title mb-8">My Music</h1>
+    <div className="container-wrapper py-8 sm:py-16">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-4 sm:mb-8 text-[var(--primary)]">
+        My Music Journey
+      </h1>
       
-      <div className="prose prose-invert prose-lg mb-12">
-        <p>
+      <div className="prose prose-invert prose-lg max-w-3xl mx-auto mb-8 sm:mb-12 px-4 sm:px-0">
+        <p className="text-base sm:text-lg text-[var(--foreground)]/80">
           Welcome to my musical playground! Here, I blend traditional musicianship with cutting-edge AI technology,
           creating unique sounds that bridge the gap between human creativity and artificial intelligence.
         </p>
-        <p>
+        <p className="text-base sm:text-lg text-[var(--foreground)]/80">
           Using tools like Suno AI, I'm exploring new ways to create and reimagine music. Each piece is a collaboration
           between human inspiration and AI capabilities, resulting in something truly unique.
         </p>
       </div>
 
-      <div className="grid gap-8">
+      <div className="grid gap-6 sm:gap-8">
         {songs.map((song, index) => (
-          <div key={index} className="bg-[var(--secondary)] p-6 rounded-lg border border-[var(--primary)]">
-            <div className="grid md:grid-cols-[300px,1fr] gap-6">
+          <div 
+            key={index} 
+            className="group bg-[var(--secondary)] p-4 sm:p-6 rounded-lg border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg"
+          >
+            <div className="grid sm:grid-cols-[250px,1fr] md:grid-cols-[300px,1fr] gap-4 sm:gap-6">
               {song.imageSrc ? (
-                <div className="relative h-[300px] w-full">
+                <div className="relative h-[200px] sm:h-[250px] md:h-[300px] w-full">
                   <CustomImage
                     src={song.imageSrc}
                     alt={song.title}
                     fill
-                    className="object-cover rounded-lg"
+                    className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-[1.02]"
                   />
                 </div>
               ) : (
-                <div className="relative h-[300px] w-full bg-[var(--primary)]/10 rounded-lg flex items-center justify-center">
-                  <span className="text-[var(--primary)] text-lg">{song.title}</span>
+                <div className="relative h-[200px] sm:h-[250px] md:h-[300px] w-full bg-gradient-to-br from-[var(--primary)]/20 to-[var(--primary)]/5 rounded-lg flex items-center justify-center group-hover:from-[var(--primary)]/30 group-hover:to-[var(--primary)]/10 transition-all">
+                  <span className="text-[var(--primary)] text-lg sm:text-xl font-medium">{song.title}</span>
                 </div>
               )}
-              <div className="flex flex-col">
-                <h2 className="text-2xl font-bold mb-2 text-[var(--primary)]">{song.title}</h2>
-                <p className="text-[var(--foreground)]/60 mb-4">{song.date}</p>
-                <p className="text-[var(--foreground)]/90 mb-6">{song.description}</p>
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-bold mb-2 text-[var(--primary)] group-hover:translate-x-1 transition-transform">
+                    {song.title}
+                  </h2>
+                  <p className="text-sm sm:text-base text-[var(--foreground)]/60 mb-2 sm:mb-4">{song.date}</p>
+                  <p className="text-sm sm:text-base text-[var(--foreground)]/80 mb-4 sm:mb-6">{song.description}</p>
+                </div>
                 <AudioPlayer src={song.audioSrc} title={`Listen to ${song.title}`} />
               </div>
             </div>

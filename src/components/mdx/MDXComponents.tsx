@@ -1,55 +1,61 @@
+'use client';
+
 import Image from 'next/image';
+import Link from 'next/link';
 import { MDXComponents } from 'mdx/types';
-import React from 'react';
 import AudioPlayer from '../AudioPlayer';
 
-const GITHUB_PAGES_URL = 'https://brandonwilliams129.github.io/PersonalPage';
-
-interface CustomImageProps {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-}
-
-const CustomImage = ({ src, alt, width, height }: CustomImageProps) => {
-  // Handle both absolute and relative URLs
-  const imageSrc = src.startsWith('http') 
-    ? src 
-    : `${GITHUB_PAGES_URL}${src}`;
-
+const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
   return (
-    <>
-      <div className="relative w-full my-8">
-        <div className="relative h-[400px] w-full">
-          <Image
-            src={imageSrc}
-            alt={alt}
-            fill
-            className="object-cover rounded-lg"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-            unoptimized
-          />
-        </div>
+    <span className="block my-8">
+      <div className="relative aspect-video w-full overflow-hidden rounded-lg">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+        />
       </div>
-      {alt && <p className="text-sm text-center mt-2 mb-8 text-[var(--foreground)]/60">{alt}</p>}
-    </>
+      {alt && (
+        <span className="block text-sm text-center mt-2 text-[var(--foreground-muted)]">
+          {alt}
+        </span>
+      )}
+    </span>
   );
 };
 
-export const mdxComponents: MDXComponents = {
-  p: ({ children }) => {
-    const isImage = React.Children.toArray(children).some(
-      child => React.isValidElement(child) && child.type === CustomImage
+const CustomLink = ({ href, ...props }: any) => {
+  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+
+  if (isInternalLink) {
+    return (
+      <Link 
+        href={href} 
+        {...props} 
+        className="text-[var(--primary)] hover:text-[var(--primary-hover)] transition-colors"
+      />
     );
-    
-    if (isImage) {
-      return <>{children}</>;
-    }
-    
-    return <p>{children}</p>;
-  },
-  img: CustomImage as any,
-  Image: CustomImage as any,
-  AudioPlayer: AudioPlayer as any,
+  }
+
+  return (
+    <a
+      href={href}
+      {...props}
+      className="text-[var(--primary)] hover:text-[var(--primary-hover)] transition-colors"
+      target="_blank"
+      rel="noopener noreferrer"
+    />
+  );
 };
+
+const components = {
+  img: CustomImage,
+  Image: CustomImage,
+  a: CustomLink,
+  Link: CustomLink,
+  AudioPlayer
+} as MDXComponents;
+
+export { components as mdxComponents };
