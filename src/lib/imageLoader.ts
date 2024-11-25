@@ -1,15 +1,19 @@
 export default function imageLoader({ src, width, quality }: { src: string; width: number; quality?: number }) {
-  // Handle both absolute URLs and relative paths
+  // Handle external URLs
   if (src.startsWith('http')) {
     return src;
   }
+
+  // Get the base path from environment
+  const basePath = process.env.NODE_ENV === 'development' ? '' : '/PersonalPage';
   
-  // If path already includes /PersonalPage, don't add it again
-  if (src.startsWith('/PersonalPage/')) {
-    return src;
-  }
+  // Clean up the source path
+  let cleanPath = src;
+  // Remove /PersonalPage if it exists
+  cleanPath = cleanPath.replace(/^\/PersonalPage\//, '');
+  // Remove leading slash if it exists
+  cleanPath = cleanPath.replace(/^\//, '');
   
-  // Remove leading slash if present and add /PersonalPage prefix
-  const path = src.startsWith('/') ? src.slice(1) : src;
-  return `/PersonalPage/${path}`;
+  // Combine with base path
+  return `${basePath}/${cleanPath}`;
 }

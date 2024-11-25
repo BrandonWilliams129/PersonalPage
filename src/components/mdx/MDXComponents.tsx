@@ -6,10 +6,8 @@ import { MDXComponents } from 'mdx/types';
 import AudioPlayer from '../AudioPlayer';
 
 const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
-  // Ensure the src has the correct GitHub Pages prefix
-  const imageSrc = src.startsWith('http') || src.startsWith('/PersonalPage/') 
-    ? src 
-    : `/PersonalPage/${src.startsWith('/') ? src.slice(1) : src}`;
+  // Use the same image loader logic
+  const imageSrc = src.startsWith('http') ? src : imageLoader({ src, width: 0 });
 
   return (
     <span className="block my-8">
@@ -20,6 +18,7 @@ const CustomImage = ({ src, alt }: { src: string; alt: string }) => {
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+          loader={imageLoader}
         />
       </div>
       {alt && (
