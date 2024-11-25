@@ -19,7 +19,7 @@ const projects: Project[] = [
   {
     title: 'Girls Name or Drug',
     description: 'A fun and challenging quiz game where players must guess whether a given word is a girl\'s name or the name of a pharmaceutical drug. Test your knowledge and prepare to be surprised!',
-    imageSrc: '/images/projects/girls-name-or-drug.png',
+    imageSrc: '/PersonalPage/images/projects/girls-name-or-drug.png',
     tags: ['JavaScript', 'HTML', 'CSS', 'Quiz Game'],
     links: {
       play: '/games/girls-name-or-drug/Index.html'
@@ -30,7 +30,7 @@ const projects: Project[] = [
   {
     title: 'Laser Tennis',
     description: 'An innovative take on Pong where players use lasers instead of balls. Features fast-paced gameplay, dynamic laser mechanics, and competitive multiplayer action.',
-    imageSrc: '/images/projects/LaserTennis.png',
+    imageSrc: '/PersonalPage/images/projects/LaserTennis.png',
     tags: ['Godot', 'GDScript', 'Sports', 'Multiplayer'],
     links: {
       play: 'https://bit-shifter.itch.io/laser-tennis'
@@ -41,7 +41,7 @@ const projects: Project[] = [
   {
     title: 'Bricked',
     description: 'A unique twist on the classic brick-breaker genre. Control a paddle to bounce the ball and break bricks, but with modern mechanics and challenging gameplay that keeps you coming back for more.',
-    imageSrc: '/images/projects/Bricked.png',
+    imageSrc: '/PersonalPage/images/projects/Bricked.png',
     tags: ['Godot', 'GDScript', 'Arcade', 'Action'],
     links: {
       play: 'https://bit-shifter.itch.io/bricked'
@@ -52,7 +52,7 @@ const projects: Project[] = [
   {
     title: 'AI-Guided Condo Remodel',
     description: 'A complete transformation of my living space using AI as the interior designer. From Stable Diffusion design concepts to smart home integration, this project showcases the practical application of AI in home improvement.',
-    imageSrc: '/images/projects/remodel/Living-room-finished-(1).jpg',
+    imageSrc: '/PersonalPage/images/projects/remodel/Living-room-finished-(1).jpg',
     tags: ['AI Design', 'Home Improvement', 'Stable Diffusion', 'Smart Home'],
     links: {
       play: '/projects/remodel'
