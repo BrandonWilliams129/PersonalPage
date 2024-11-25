@@ -2,13 +2,14 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { serializeMDXContent } from './mdx'
+import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 interface BlogPost {
   slug: string
   title: string
   date: string
   description: string
-  content?: string
+  content?: MDXRemoteSerializeResult
 }
 
 const postsDirectory = path.join(process.cwd(), 'src/app/blog/posts')
