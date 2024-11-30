@@ -26,10 +26,10 @@ const songs: Song[] = [
     imageSrc: '/PersonalPage/images/AgainstTheWake.jpeg'
   },
   {
-    title: 'Blackrtainsout Cu',
+    title: 'Blackout Curtains',
     description: 'An experimental piece that pushes the boundaries of conventional sound, blending dark atmospheres with cutting-edge AI production.',
     date: 'November 24, 2024',
-    audioSrc: '/media/music/Blackrtainsout Cu.mp3',
+    audioSrc: '/media/music/Blackout Curtains.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
