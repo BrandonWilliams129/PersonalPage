@@ -15,91 +15,91 @@ const songs: Song[] = [
     title: 'Weight of the World',
     description: 'A powerful and emotive track that explores the burdens we carry and the strength we find to move forward.',
     date: 'November 24, 2024',
-    audioSrc: '/PersonalPage/media/music/Weight of the World.mp3',
+    audioSrc: '/media/music/Weight of the World.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
     title: 'Against The Wake',
     description: 'A powerful exploration of resilience and determination, featuring dynamic instrumentation and emotive vocals created with AI.',
     date: 'November 18, 2024',
-    audioSrc: '/PersonalPage/media/music/AgainstTheWake.mp3',
+    audioSrc: '/media/music/AgainstTheWake.mp3',
     imageSrc: '/PersonalPage/images/AgainstTheWake.jpeg'
   },
   {
     title: 'Blackout Curtains',
     description: 'An experimental piece that pushes the boundaries of conventional sound, blending dark atmospheres with cutting-edge AI production.',
     date: 'November 24, 2024',
-    audioSrc: '/PersonalPage/media/music/Blackout Curtains.mp3',
+    audioSrc: '/media/music/Blackout Curtains.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
     title: 'Voice',
     description: 'An AI-assisted composition exploring the boundaries between human vocals and synthetic soundscapes, created using Suno AI.',
     date: 'December 2023',
-    audioSrc: '/PersonalPage/media/music/Voice .mp3',
+    audioSrc: '/media/music/Voice .mp3',
     imageSrc: '/PersonalPage/images/Voice.jpeg'
   },
   {
     title: 'Chin UP',
     description: 'A motivational anthem about perseverance and resilience, blending punk energy with modern AI production.',
     date: 'January 2024',
-    audioSrc: '/PersonalPage/media/music/Chin up.mp3',
+    audioSrc: '/media/music/Chin up.mp3',
     imageSrc: '/PersonalPage/images/ChinUP.jpeg'
   },
   {
     title: 'Collapse the Sky',
     description: 'An intense and atmospheric track that combines heavy elements with ethereal soundscapes.',
     date: 'November 24, 2024',
-    audioSrc: '/PersonalPage/media/music/Collapse the Sky.mp3',
+    audioSrc: '/media/music/Collapse the Sky.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
     title: 'Hammer of War',
     description: 'A heavy-hitting track that combines aggressive rhythms with epic orchestral elements, showcasing the versatility of AI music production.',
     date: 'February 2024',
-    audioSrc: '/PersonalPage/media/music/Hammer of war.mp3',
+    audioSrc: '/media/music/Hammer of war.mp3',
     imageSrc: '/PersonalPage/images/HammerOfWar.jfif'
   },
   {
     title: 'Paper Hearts',
     description: 'An emotional journey through love and loss, featuring a unique blend of acoustic and electronic elements.',
     date: 'March 2024',
-    audioSrc: '/PersonalPage/media/music/Paper Hearts.mp3',
+    audioSrc: '/media/music/Paper Hearts.mp3',
     imageSrc: '/PersonalPage/images/PaperHearts.jfif'
   },
   {
     title: 'Paper Houses',
     description: 'A metaphorical exploration of fragile foundations and the structures we build in our lives.',
     date: 'November 24, 2024',
-    audioSrc: '/PersonalPage/media/music/Paper Houses.mp3',
+    audioSrc: '/media/music/Paper Houses.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
     title: 'Quiet Panic',
     description: 'A haunting piece that delves into the silent struggles we face, wrapped in atmospheric soundscapes.',
     date: 'November 24, 2024',
-    audioSrc: '/PersonalPage/media/music/Quiet Panic.mp3',
+    audioSrc: '/media/music/Quiet Panic.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
     title: 'Salt in the Water',
     description: 'A fluid and dynamic composition that explores themes of purification and emotional cleansing.',
     date: 'November 24, 2024',
-    audioSrc: '/PersonalPage/media/music/Salt in the Water.mp3',
+    audioSrc: '/media/music/Salt in the Water.mp3',
     imageSrc: '/PersonalPage/images/Weight of the World.png'
   },
   {
     title: 'Grit Doesn\'t Glitter',
     description: 'Raw and unfiltered, this track explores the less glamorous side of determination and hard work.',
     date: 'March 2024',
-    audioSrc: '/PersonalPage/media/music/Grit doesn\'t Glitter .mp3',
+    audioSrc: '/media/music/Grit doesn\'t Glitter .mp3',
     imageSrc: '/PersonalPage/images/GritDontGlitter.jfif'
   },
   {
     title: 'LFT2',
     description: 'A reimagining of "Live for Today" from my band days, recreated with modern AI tools while keeping the original punk rock spirit alive.',
     date: 'November 2024',
-    audioSrc: '/PersonalPage/media/music/LFT2.mp3',
+    audioSrc: '/media/music/LFT2.mp3',
     imageSrc: '/PersonalPage/images/LFT2.jpeg'
   }
 ];
