@@ -19,7 +19,7 @@ const projects: Project[] = [
   {
     title: 'EasyFinBot',
     description: 'A sophisticated financial assistant website that helps users manage their finances and make informed financial decisions. Built with modern web technologies and featuring an intuitive user interface.',
-    imageSrc: '/images/projects/easyfinbot.jpg',
+    imageSrc: '/PersonalPage/images/projects/easyfinbot.jpg',
     tags: ['Web Development', 'Finance', 'AI', 'User Experience'],
     links: {
       play: 'https://www.easyfinbot.com'
