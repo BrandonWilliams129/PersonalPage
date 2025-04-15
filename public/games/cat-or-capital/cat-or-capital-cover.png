@@ -1,0 +1,24 @@
+<div className="card group">
+  <div className="aspect-[4/3] rounded-xl overflow-hidden mb-6 bg-[var(--secondary)]/20">
+    <img
+      src="/games/cat-or-capital/images/cat-or-capital-cover.png"
+      alt="Cat or Capital Game"
+      width={800}
+      height={600}
+      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+      style={{ objectFit: 'cover', width: '100%', height: '100%' }}
+    />
+  </div>
+  <h3 className="text-2xl font-bold mb-4">Cat or Capital</h3>
+  <p className="text-[var(--foreground-muted)] mb-4">
+    Can you tell the difference between a cat's name and a world capital? Test your knowledge and intuition in this fun game!
+  </p>
+  <a
+    href="/games/cat-or-capital/cat-or-capital.html"
+    className="text-[var(--primary)] hover:text-[var(--primary-hover)] transition-colors"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Play Now →
+  </a>
+</div>

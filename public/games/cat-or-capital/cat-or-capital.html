@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cat or Capital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #ffb347 0%, #ff5e62 50%, #7b2ff2 100%);
+      --hud-bg: rgba(255,255,255,0.65);
+      --hud-border: rgba(255,255,255,0.25);
+      --glass-bg: rgba(255,255,255,0.28);
+      --glass-blur: 18px;
+      --accent: #7b2ff2;
+      --accent2: #ff5e62;
+      --danger: #e74c3c;
+      --success: #27ae60;
+      --button-bg: linear-gradient(135deg, #ffb347 0%, #ff5e62 100%);
+      --button-bg-hover: linear-gradient(135deg, #ff5e62 0%, #7b2ff2 100%);
+      --button-border: #fff;
+      --button-shadow: 0 4px 24px rgba(123,47,242,0.08);
+      --emoji-size: 2.2em;
+      --card-shadow: 0 10px 48px 0 rgba(123,47,242,0.10);
+    }
+    html, body {
+      height: 100%;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+      background: url('images/CatCapital.png') no-repeat center center fixed;
+      background-size: cover;
+      background-color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+    .main-flex {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100vw;
+      min-height: 100vh;
+      gap: 2.5vw;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      width: 100%;
+      max-width: 440px;
+      margin: 44px auto 32px auto;
+      background: var(--glass-bg);
+      border-radius: 28px;
+      box-shadow: var(--card-shadow);
+      padding: 40px 22px 26px 22px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      border: 1.5px solid var(--hud-border);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+    }
+    .main-menu h1 {
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+      font-size: 2.3em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 0.2em;
+      color: var(--accent2);
+      text-shadow: 0 2px 16px rgba(255,94,98,0.09);
+    }
+    .instructions, .instructions.show {
+      background: rgba(255,255,255,0.7);
+      border-radius: 16px;
+      padding: 1em 1em 0.7em 1em;
+      font-size: 1.09em;
+      color: #222;
+      margin-bottom: 1.2em;
+      box-shadow: 0 2px 10px rgba(123,47,242,0.03);
+    }
+    .instructions-toggle {
+      background: none;
+      border: none;
+      color: var(--accent);
+      font-size: 1em;
+      cursor: pointer;
+      margin-bottom: 0.5em;
+      text-decoration: underline;
+    }
+    .scoreboard {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin: 0.9em 0 1.4em 0;
+      background: rgba(255,255,255,0.93);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(123,47,242,0.07);
+      border: 2px solid var(--accent2);
+      padding: 0.75em 1.2em 0.75em 1.2em;
+      font-size: 1.13em;
+      font-weight: 600;
+      color: #4a2d7b;
+      letter-spacing: 0.01em;
+      box-sizing: border-box;
+      min-height: unset;
+      min-width: unset;
+      gap: 0;
+    }
+    .scoreboard span {
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.33em;
+      white-space: nowrap;
+      flex: 1 1 0;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      justify-content: center;
+    }
+    .scoreboard .life {
+      color: var(--danger);
+      display: inline-block;
+      white-space: nowrap;
+      font-size: 1.12em;
+      vertical-align: middle;
+      margin-left: 0.18em;
+      letter-spacing: 0.02em;
+    }
+    .scoreboard #streak {
+      color: var(--success);
+      margin-left: 0.2em;
+    }
+    @media (max-width: 600px) {
+      .scoreboard {
+        font-size: 1em;
+        padding: 0.5em 0.4em 0.5em 0.4em;
+        width: 100%;
+      }
+      .scoreboard span {
+        margin: 0;
+      }
+    }
+    .word {
+      font-size: 2.2em;
+      font-weight: bold;
+      margin: 1.4em 0 0.8em 0;
+      letter-spacing: 1px;
+      min-height: 1.3em;
+      text-align: center;
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+      color: #262a42;
+      text-shadow: 0 2px 8px rgba(123,47,242,0.07);
+    }
+    .buttons {
+      display: flex;
+      gap: 1.6em;
+      margin-bottom: 1.7em;
+      width: 100%;
+      justify-content: center;
+    }
+    .game-btn {
+      background: var(--button-bg);
+      border: 2.5px solid var(--button-border);
+      border-radius: 18px;
+      padding: 1.1em 2.3em;
+      font-size: 1.28em;
+      font-weight: 700;
+      color: #fff;
+      cursor: pointer;
+      box-shadow: var(--button-shadow);
+      transition: background 0.22s, border-color 0.22s, transform 0.12s, box-shadow 0.22s;
+      outline: none;
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+      text-shadow: 0 1px 8px rgba(123,47,242,0.08);
+    }
+    .game-btn:active {
+      transform: scale(0.96);
+      box-shadow: 0 2px 10px rgba(123,47,242,0.13);
+    }
+    .game-btn:hover, .game-btn:focus {
+      background: var(--button-bg-hover);
+      border-color: var(--accent2);
+      box-shadow: 0 8px 28px rgba(123,47,242,0.13);
+    }
+    .hidden {
+      display: none !important;
+    }
+    .confetti {
+      position: fixed;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 100;
+      display: block;
+    }
+    .emoji {
+      position: absolute;
+      font-size: var(--emoji-size);
+      will-change: transform, opacity;
+      pointer-events: none;
+    }
+    .game-over {
+      text-align: center;
+      margin-top: 2em;
+    }
+    .leaderboard {
+      margin: 1.7em 0 0 0;
+      width: 100%;
+      background: rgba(255,255,255,0.72);
+      border-radius: 16px;
+      padding: 1.1em 0.8em;
+      box-shadow: 0 2px 16px rgba(123,47,242,0.08);
+      border: 1.5px solid var(--hud-border);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .leaderboard-title {
+      font-size: 1.22em;
+      font-weight: bold;
+      color: var(--accent2);
+      margin-bottom: 0.7em;
+      text-align: center;
+      letter-spacing: 0.01em;
+    }
+    .leaderboard-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 1em;
+    }
+    .leaderboard-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45em 0;
+      border-bottom: 1px solid #f3e3ff;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.22);
+      margin-bottom: 0.2em;
+    }
+    .leaderboard-list li:last-child {
+      border-bottom: none;
+    }
+    .leaderboard-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1em;
+    }
+    .leaderboard-form input[type="text"] {
+      font-size: 1.13em;
+      padding: 0.5em 0.8em;
+      border-radius: 9px;
+      border: 1.5px solid #b3c6e0;
+      margin-bottom: 0.7em;
+      width: 80%;
+      max-width: 220px;
+      background: rgba(255,255,255,0.72);
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+    }
+    .leaderboard-form button {
+      font-size: 1em;
+      padding: 0.5em 1.2em;
+      border-radius: 9px;
+      border: 2px solid var(--accent2);
+      background: var(--button-bg);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+    }
+    .leaderboard-form button:hover {
+      background: var(--button-bg-hover);
+      border-color: var(--accent);
+    }
+    /* Full-page leaderboard modal overlay */
+    .leaderboard-modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(30, 18, 45, 0.28);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+      transition: opacity 0.2s;
+    }
+    .leaderboard-modal-center {
+      background: rgba(255,255,255,0.92);
+      border-radius: 24px;
+      box-shadow: 0 10px 48px 0 rgba(123,47,242,0.13);
+      padding: 2.1em 1.5em 1.3em 1.5em;
+      max-width: 370px;
+      width: 98vw;
+      min-height: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      border: 1.5px solid var(--hud-border);
+      position: relative;
+    }
+    .leaderboard-modal-center .leaderboard {
+      margin: 0 0 1.1em 0;
+      background: rgba(255,255,255,0.83);
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(123,47,242,0.06);
+      border: 1.5px solid var(--hud-border);
+      padding: 1.2em 0.7em 1.2em 0.7em;
+      width: 100%;
+      max-width: 330px;
+    }
+    .leaderboard-modal-center .leaderboard-title {
+      color: var(--accent2);
+      font-size: 1.27em;
+      margin-bottom: 0.7em;
+    }
+    .leaderboard-modal-center .leaderboard-list li {
+      background: rgba(255,255,255,0.25);
+      margin-bottom: 0.18em;
+      border-radius: 8px;
+    }
+    @media (max-width: 900px) {
+      .main-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.7em;
+      }
+    }
+    @media (max-width: 600px) {
+      .main-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.7em;
+      }
+      .leaderboard-modal-center {
+        padding: 1.1em 0.3em 1.1em 0.3em;
+        min-height: 260px;
+        max-width: 99vw;
+      }
+      .leaderboard-modal-center .leaderboard {
+        max-width: 99vw;
+        padding: 0.7em 0.3em 0.7em 0.3em;
+      }
+    }
+    /* Fact log styles */
+    .fact-log {
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: flex-end;
+      width: 100%;
+      max-width: 420px;
+      margin: 1.1em auto 1.3em auto;
+      gap: 0.7em;
+      min-height: 2.5em;
+      z-index: 1;
+    }
+    .fact-bubble {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7em;
+      background: rgba(255,255,255,0.96);
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(123,47,242,0.10);
+      border: 2px solid var(--accent2);
+      padding: 1.05em 1.3em 1.05em 1.05em;
+      font-size: 1.13em;
+      font-weight: 500;
+      color: #4a2d7b;
+      width: 100%;
+      opacity: 1;
+      transition: opacity 0.9s, padding 0.18s;
+      position: relative;
+      font-family: 'Poppins', 'Inter', Arial, sans-serif;
+      letter-spacing: 0.01em;
+      will-change: opacity, padding;
+      box-sizing: border-box;
+      min-height: 2.3em;
+    }
+    .fact-bubble .fact-emoji {
+      font-size: 1.5em;
+      margin-right: 0.25em;
+      user-select: none;
+      flex-shrink: 0;
+      line-height: 1.1;
+    }
+    .fact-bubble b {
+      color: var(--accent);
+    }
+    @media (max-width: 600px) {
+      .fact-log {
+        max-width: 99vw;
+      }
+      .fact-bubble {
+        font-size: 1em;
+        padding: 0.7em 0.6em 0.7em 0.7em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="confetti" id="confetti"></canvas>
+  <div class="main-flex">
+    <div class="container">
+      <div id="mainMenu" class="main-menu">
+        <h1 style="text-align:center; color:var(--accent2); margin-bottom:0.3em;">Cat or Capital</h1>
+        <div class="instructions show" style="margin-bottom:1.5em;">
+          <strong>How to Play:</strong><br>
+          - A word will appear. It is either a <b>cat breed</b> or a <b>capital city</b>.<br>
+          - Click <b>Cat</b> or <b>Capital</b> (or use <b>C</b>/<b>K</b> keys) to guess.<br>
+          - Correct = +1 point. Wrong = -1 life.<br>
+          - <b>Streak Bonus:</b> Every 5 correct in a row gives +2 bonus points!<br>
+          - Game ends at 0 lives.<br>
+          - If your score is Top 10, enter your name for the global leaderboard.<br>
+          - <b>Confetti</b> and 🎉 emojis if you make the leaderboard!<br>
+          <br>
+          <b>Keyboard Shortcuts:</b> C = Cat, K = Capital, Enter = Leaderboard
+        </div>
+        <button class="game-btn" id="menuPlayBtn" style="margin-bottom:0.8em;">Play</button>
+        <button class="game-btn" id="menuLeaderboardBtn">Leaderboard</button>
+      </div>
+      <button class="instructions-toggle hidden" id="instructionsToggle">Show Instructions</button>
+      <div class="instructions hidden" id="instructions"></div>
+      <div class="scoreboard hidden">
+        <span>Score: <span id="score">0</span></span>
+        <span>Lives: <span id="lives">3</span> <span class="life">❤️❤️❤️</span></span>
+        <span>Streak: <span id="streak">0</span></span>
+      </div>
+      <div class="word hidden" id="word">...</div>
+      <div class="buttons hidden">
+        <button class="game-btn" id="catBtn">Cat 🐱</button>
+        <button class="game-btn" id="capitalBtn">Capital 🏛️</button>
+      </div>
+      <div id="factLog" class="fact-log"></div>
+      <div id="gameOver" class="game-over hidden">
+        <h2>Game Over</h2>
+        <div id="finalScore"></div>
+        <button class="game-btn" id="playAgainBtn">Main Menu</button>
+        <div id="leaderboardSection"></div>
+      </div>
+    </div>
+    <div id="globalLeaderboardModal" class="hidden leaderboard-modal-overlay">
+      <div class="leaderboard-modal-center">
+        <div id="modalLeaderboardContent"></div>
+        <button class="game-btn" id="closeLeaderboardModalBtn" style="margin-top:1.3em; width:100%;">Close</button>
+      </div>
+    </div>
+    <button id="themeMuteBtn" class="game-btn" style="position: absolute; top: 12px; right: 16px; z-index: 110; padding: 0.4em 0.7em;">🔊</button>
+  </div>
+  <!-- Firebase SDKs (add your config below) -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script> -->
+  <script>
+    // ==== CONFIGURATION ====
+    // 1. Go to Firebase Console, create a project & Realtime Database (or Firestore if you prefer)
+    // 2. Paste your config below and uncomment the SDK scripts above
+    /*
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      databaseURL: "YOUR_DATABASE_URL",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database(); // or firebase.firestore();
+    */
+
+    // ==== DATA ==== (50 cat breeds, 50 capitals, fun facts)
+    const cats = [
+      "Abyssinian", "Bengal", "Birman", "Bombay", "British Shorthair", "Burmese", "Chartreux", "Cornish Rex", "Devon Rex", "Egyptian Mau", "Exotic Shorthair", "Havana Brown", "Himalayan", "Japanese Bobtail", "Korat", "LaPerm", "Maine Coon", "Manx", "Norwegian Forest", "Ocicat", "Oriental", "Persian", "Ragdoll", "Russian Blue", "Scottish Fold", "Selkirk Rex", "Siamese", "Siberian", "Singapura", "Snowshoe", "Somali", "Sphynx", "Tonkinese", "Turkish Angora", "Turkish Van", "American Shorthair", "Balinese", "Burmilla", "Cymric", "Donskoy", "European Burmese", "Javanese", "Lykoi", "Munchkin", "Nebelung", "Peterbald", "Pixie-bob", "Savannah", "Serengeti", "Sokoke", "Toyger"
+    ];
+    const capitals = [
+      "Kabul", "Tirana", "Algiers", "Andorra la Vella", "Luanda", "Buenos Aires", "Yerevan", "Canberra", "Vienna", "Baku", "Nassau", "Manama", "Dhaka", "Bridgetown", "Minsk", "Brussels", "Belmopan", "Porto-Novo", "Thimphu", "La Paz", "Sarajevo", "Gaborone", "Brasília", "Sofia", "Ouagadougou", "Gitega", "Phnom Penh", "Yaoundé", "Ottawa", "Praia", "Bangui", "N'Djamena", "Santiago", "Beijing", "Bogotá", "Moroni", "Kinshasa", "Brazzaville", "San José", "Yamoussoukro", "Zagreb", "Havana", "Nicosia", "Prague", "Copenhagen", "Djibouti", "Roseau", "Santo Domingo", "Quito", "Cairo"
+    ];
+    // Fun facts for a few cats/capitals
+    const facts = {
+      // CAT FACTS
+      "Siamese": "Siamese cats are one of the oldest and most recognizable Asian cat breeds.",
+      "Maine Coon": "Maine Coons are the largest domesticated cat breed.",
+      "Sphynx": "Sphynx cats are known for their hairless appearance.",
+      "Persian": "Persians have long, luxurious coats and sweet personalities.",
+      "Bengal": "Bengals have a wild appearance with leopard-like spots.",
+      "Scottish Fold": "Scottish Folds have unique folded ears due to a genetic mutation.",
+      "Ragdoll": "Ragdolls are known for going limp when picked up, like a ragdoll!",
+      "Abyssinian": "Abyssinians are among the oldest known cat breeds.",
+      "Russian Blue": "Russian Blues have a plush blue-gray coat and green eyes.",
+      "Savannah": "Savannah cats are a hybrid between a domestic cat and a serval.",
+      "Norwegian Forest": "This breed is adapted to cold climates with a thick, water-resistant coat.",
+      "Turkish Van": "Turkish Vans are known for loving to swim!",
+      "Manx": "Manx cats are famous for their naturally bobbed tails.",
+      "Oriental Shorthair": "They come in over 300 colors and patterns!",
+      "Bombay": "Bombay cats look like miniature black panthers.",
+      "Chartreux": "Chartreux cats are the national cat of France.",
+      "Egyptian Mau": "Egyptian Maus are the fastest domestic cats, running up to 30 mph.",
+      "Siberian": "Siberians are hypoallergenic compared to most cats.",
+      "British Shorthair": "British Shorthairs inspired the 'Cheshire Cat' in Alice in Wonderland.",
+      "Burmese": "Burmese cats are very social and love human company.",
+      "Cornish Rex": "Cornish Rex cats have soft, curly fur and love to play fetch.",
+      "Devon Rex": "Devon Rexes are known as 'pixie cats' for their elfin faces.",
+      "American Curl": "Their ears curl backward, giving them a unique look.",
+      "Munchkin": "Munchkins have very short legs due to a genetic mutation.",
+      "LaPerm": "LaPerm cats have curly coats and are extremely affectionate.",
+      "Singapura": "Singapura is one of the smallest cat breeds in the world.",
+      "Toyger": "Toygers are bred to resemble miniature tigers.",
+      "Snowshoe": "Snowshoe cats have white paws and striking blue eyes.",
+      "Ragamuffin": "Ragamuffins are known for their sweet, docile temperament.",
+      "Selkirk Rex": "Selkirk Rex cats have plush, curly fur and a teddy bear look.",
+      // CAPITAL FACTS
+      "Kabul": "Kabul is the capital of Afghanistan and sits over 5,800 feet above sea level.",
+      "Ottawa": "Ottawa is the capital of Canada and means 'to trade' in Algonquin.",
+      "Havana": "Havana is the largest city in the Caribbean region.",
+      "Tokyo": "Tokyo is the most populous capital city in the world.",
+      "Vienna": "Vienna has the world’s oldest zoo, founded in 1752.",
+      "Canberra": "Canberra was chosen as Australia’s capital as a compromise between Sydney and Melbourne.",
+      "Cairo": "Cairo is known as 'The City of a Thousand Minarets'.",
+      "Paris": "Paris was originally a Roman city called Lutetia.",
+      "Brasília": "Brasília was built in just 41 months and looks like an airplane from above.",
+      "Bangkok": "Bangkok’s ceremonial name is the longest city name in the world.",
+      "Reykjavík": "Reykjavík is the world’s northernmost capital of a sovereign state.",
+      "Nairobi": "Nairobi is nicknamed 'The Green City in the Sun'.",
+      "Helsinki": "Helsinki has more saunas than cars!",
+      "Budapest": "Budapest has the oldest subway line in continental Europe.",
+      "Rome": "Rome’s Colosseum could hold over 50,000 spectators.",
+      "London": "London’s underground is the oldest metro system in the world.",
+      "Moscow": "Moscow’s metro stations are known as 'underground palaces'.",
+      "Washington": "Washington, D.C. was designed by a French architect.",
+      "Madrid": "Madrid is home to the world’s oldest restaurant, opened in 1725.",
+      "Beijing": "Beijing’s Forbidden City has 9,999 rooms.",
+      "Lisbon": "Lisbon is older than Rome by centuries.",
+      "Berlin": "Berlin has more bridges than Venice.",
+      "Oslo": "Oslo was founded over 1,000 years ago.",
+      "Athens": "Athens is Europe’s oldest capital city.",
+      "Seoul": "Seoul is home to the world’s fastest internet speeds.",
+      "Stockholm": "Stockholm is built on 14 islands.",
+      "Jakarta": "Jakarta is the largest city in Southeast Asia.",
+      "Wellington": "Wellington is the southernmost capital in the world.",
+      "Pretoria": "Pretoria is one of South Africa’s three capitals.",
+      "Tallinn": "Tallinn has one of Europe’s best-preserved medieval old towns.",
+      "Tbilisi": "Tbilisi, Georgia, is famous for its sulfur baths.",
+      "Ulaanbaatar": "Ulaanbaatar is the coldest capital city in the world.",
+      "Hanoi": "Hanoi is over 1,000 years old.",
+      "Sofia": "Sofia, Bulgaria, sits at the foot of Mt. Vitosha.",
+      "Dakar": "Dakar is the westernmost city on the African mainland.",
+      "Bamako": "Bamako is one of the fastest-growing cities in Africa.",
+      "Addis Ababa": "Addis Ababa is home to the African Union headquarters."
+    };
+
+    // ==== GAME STATE ====
+    let score = 0, lives = 3, streak = 0, streakBonus = 0;
+    let usedWords = [], currentWord = '', currentType = '';
+    let words = [];
+    let leaderboard = [];
+    let gameActive = true;
+    let confettiTimeout = null;
+
+    // ==== SOUNDS ====
+    const sounds = {
+      correct: new Audio('sounds/correct.mp3'),
+      wrong: new Audio('sounds/wrong.mp3'),
+      fanfare: new Audio('sounds/fanfare.mp3'),
+      leaderboard: new Audio('sounds/leaderboard.mp3'),
+      gameover: new Audio('sounds/gameover.mp3'),
+    };
+    for (const key in sounds) sounds[key].volume = 0.3;
+
+    // ==== DOM ELEMENTS ====
+    const mainMenu = document.getElementById('mainMenu');
+    const menuPlayBtn = document.getElementById('menuPlayBtn');
+    const menuLeaderboardBtn = document.getElementById('menuLeaderboardBtn');
+    const globalLeaderboardModal = document.getElementById('globalLeaderboardModal');
+    const modalLeaderboardContent = document.getElementById('modalLeaderboardContent');
+    const closeLeaderboardModalBtn = document.getElementById('closeLeaderboardModalBtn');
+    const wordEl = document.getElementById('word');
+    const catBtn = document.getElementById('catBtn');
+    const capitalBtn = document.getElementById('capitalBtn');
+    const scoreEl = document.getElementById('score');
+    const livesEl = document.getElementById('lives');
+    const streakEl = document.getElementById('streak');
+    const lifeEl = document.querySelector('.life');
+    const factLog = document.getElementById('factLog');
+    let factTimers = [];
+    const gameOverEl = document.getElementById('gameOver');
+    const finalScoreEl = document.getElementById('finalScore');
+    const playAgainBtn = document.getElementById('playAgainBtn');
+    const leaderboardSection = document.getElementById('leaderboardSection');
+    const confettiCanvas = document.getElementById('confetti');
+
+    // ==== MAIN MENU & GAME STATE HANDLERS ====
+    function showMainMenu() {
+      mainMenu.classList.remove('hidden');
+      document.querySelector('.scoreboard').classList.add('hidden');
+      document.getElementById('word').classList.add('hidden');
+      document.querySelector('.buttons').classList.add('hidden');
+      factLog.innerHTML = '';
+      gameOverEl.classList.add('hidden');
+      leaderboardSection.innerHTML = '';
+    }
+    function startGame() {
+      mainMenu.classList.add('hidden');
+      document.querySelector('.scoreboard').classList.remove('hidden');
+      document.getElementById('word').classList.remove('hidden');
+      document.querySelector('.buttons').classList.remove('hidden');
+      factLog.innerHTML = '';
+      gameOverEl.classList.add('hidden');
+      newGame();
+    }
+    menuPlayBtn.addEventListener('click', startGame);
+    playAgainBtn.addEventListener('click', showMainMenu);
+    // Leaderboard modal logic
+    function showGlobalLeaderboard() {
+      globalLeaderboardModal.classList.remove('hidden');
+      modalLeaderboardContent.innerHTML = '<div class="leaderboard"><div class="leaderboard-title">Leaderboard</div><ul class="leaderboard-list" id="lbListModal"></ul></div>';
+      loadLeaderboard('lbListModal');
+    }
+    function hideGlobalLeaderboard() {
+      globalLeaderboardModal.classList.add('hidden');
+    }
+    menuLeaderboardBtn.addEventListener('click', showGlobalLeaderboard);
+    closeLeaderboardModalBtn.addEventListener('click', hideGlobalLeaderboard);
+    // Enter toggles leaderboard modal
+    document.addEventListener('keydown', e => {
+      if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
+      if (e.key === 'Enter') {
+        if (!globalLeaderboardModal.classList.contains('hidden')) {
+          hideGlobalLeaderboard();
+        } else {
+          showGlobalLeaderboard();
+        }
+      }
+    });
+
+    // ==== GAME LOGIC ====
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+    function newGame() {
+      score = 0; lives = 3; streak = 0; streakBonus = 0;
+      usedWords = [];
+      words = [];
+      for (const c of cats) words.push({word: c, type: 'cat'});
+      for (const c of capitals) words.push({word: c, type: 'capital'});
+      shuffle(words);
+      updateScoreboard();
+      gameActive = true;
+      gameOverEl.classList.add('hidden');
+      catBtn.disabled = false;
+      capitalBtn.disabled = false;
+      factLog.innerHTML = '';
+      nextWord();
+    }
+    function updateScoreboard() {
+      scoreEl.textContent = score;
+      livesEl.textContent = lives;
+      streakEl.textContent = streak;
+      lifeEl.innerHTML = '❤️'.repeat(lives) + '<span style="color:#eee">' + '❤️'.repeat(3-lives) + '</span>';
+    }
+    function nextWord() {
+      if (words.length === 0) {
+        for (const c of cats) words.push({word: c, type: 'cat'});
+        for (const c of capitals) words.push({word: c, type: 'capital'});
+        shuffle(words);
+      }
+      let next;
+      do {
+        next = words.pop();
+      } while (usedWords.includes(next.word) && words.length > 0);
+      usedWords.push(next.word);
+      currentWord = next.word;
+      currentType = next.type;
+      wordEl.textContent = currentWord;
+      catBtn.disabled = false;
+      capitalBtn.disabled = false;
+      wordEl.style.animation = 'fadeIn 0.5s';
+      setTimeout(() => wordEl.style.animation = '', 500);
+    }
+    function handleGuess(type) {
+      if (!gameActive) return;
+      catBtn.disabled = true;
+      capitalBtn.disabled = true;
+      let correct = (type === currentType);
+      if (correct) {
+        score++;
+        streak++;
+        playSound('correct');
+        if (streak > 0 && streak % 5 === 0) {
+          streakBonus += 2;
+          score += 2;
+          showStreakBonus();
+        }
+      } else {
+        lives--;
+        streak = 0;
+        playSound('wrong');
+      }
+      updateScoreboard();
+      showFact(currentWord);
+      if (lives <= 0) {
+        gameOver();
+      } else {
+        setTimeout(nextWord, 1100);
+      }
+    }
+    function showFact(word) {
+      if (facts[word]) {
+        const isCat = /cat|siamese|coon|sphynx|persian|bengal|scottish|ragdoll|abyssinian|russian|savannah|norwegian|turkish|manx|oriental|bombay|chartreux|egyptian|siberian|british|burmese|cornish|devon|curl|munchkin|laperm|singapura|toyg|snowshoe|ragamuffin|selkirk/i.test(word);
+        const emoji = isCat ? '🐾' : '🌍';
+        const bubble = document.createElement('div');
+        bubble.className = 'fact-bubble';
+        bubble.innerHTML = `<span class="fact-emoji">${emoji}</span><span class="fact-text"><b>Fun Fact:</b> ${facts[word]}</span>`;
+        factLog.prepend(bubble);
+        // Fade out after 10s
+        const timer = setTimeout(() => {
+          bubble.style.opacity = 0;
+          setTimeout(() => bubble.remove(), 900);
+        }, 10000);
+        factTimers.push(timer);
+        // Clean up old timers if too many facts
+        if (factLog.children.length > 6) {
+          const last = factLog.lastElementChild;
+          if (last) last.remove();
+        }
+      }
+    }
+    function clearFactLog() {
+      factTimers.forEach(t => clearTimeout(t));
+      factTimers = [];
+      factLog.innerHTML = '';
+    }
+    function showStreakBonus() {
+      const bubble = document.createElement('div');
+      bubble.className = 'fact-bubble';
+      bubble.innerHTML = `<span class="fact-emoji">🔥</span><span class="fact-text"><b>Streak Bonus!</b> +2 points!`;
+      factLog.prepend(bubble);
+      bubble.style.background = 'rgba(255, 245, 220, 0.97)';
+      bubble.style.borderColor = 'var(--success)';
+      bubble.style.color = 'var(--success)';
+      // Fade out after 10s
+      setTimeout(() => {
+        bubble.style.opacity = 0;
+        setTimeout(() => bubble.remove(), 900);
+      }, 10000);
+      if (factLog.children.length > 6) {
+        const last = factLog.lastElementChild;
+        if (last) last.remove();
+      }
+    }
+    function gameOver() {
+      gameActive = false;
+      // High score check
+      let best = parseInt(localStorage.getItem('catcapital_highscore')||'0');
+      if (score > best) {
+        localStorage.setItem('catcapital_highscore', score);
+        playSound('fanfare');
+        setTimeout(() => playSound('gameover'), 800);
+      } else {
+        playSound('gameover');
+      }
+      finalScoreEl.innerHTML = `<b>Your Score:</b> ${score}<br><span style='font-size:0.9em'>Best: ${Math.max(score, best)}</span>`;
+      gameOverEl.classList.remove('hidden');
+      showLeaderboardSection();
+    }
+    // ==== BUTTON HANDLERS ====
+    catBtn.addEventListener('click', () => handleGuess('cat'));
+    capitalBtn.addEventListener('click', () => handleGuess('capital'));
+    // ==== KEYBOARD SHORTCUTS ====
+    document.addEventListener('keydown', e => {
+      if (!gameActive) return;
+      if (e.key.toLowerCase() === 'c') catBtn.click();
+      if (e.key.toLowerCase() === 'k') capitalBtn.click();
+    });
+    // ==== LEADERBOARD ==== (Firebase integration needed)
+    function showLeaderboardSection() {
+      leaderboardSection.innerHTML = '<div class="leaderboard"><div class="leaderboard-title">Leaderboard</div><ul class="leaderboard-list" id="lbList"></ul></div>';
+      loadLeaderboard();
+    }
+    function loadLeaderboard(listId = 'lbList') {
+      // Firebase code here (replace below with actual fetch)
+      // Simulate async fetch
+      setTimeout(() => {
+        // Example data, replace with Firebase fetch
+        leaderboard = JSON.parse(localStorage.getItem('catcapital_lb')||'[]');
+        leaderboard = leaderboard.sort((a,b) => b.score - a.score).slice(0,10);
+        renderLeaderboard(listId);
+      }, 400);
+    }
+    function renderLeaderboard(listId = 'lbList') {
+      const lbList = document.getElementById(listId);
+      lbList.innerHTML = '';
+      let onBoard = false;
+      leaderboard.forEach((entry, i) => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${i+1}. ${sanitize(entry.name)}</span><span>${entry.score}</span>`;
+        if (entry.score === score && !onBoard) {
+          li.style.background = '#e0ffe6';
+          onBoard = true;
+        }
+        lbList.appendChild(li);
+      });
+      if (score > 0 && (leaderboard.length < 10 || score > leaderboard[leaderboard.length-1].score) && listId === 'lbList') {
+        showLeaderboardForm();
+      }
+    }
+    function showLeaderboardForm() {
+      leaderboardSection.innerHTML += `
+        <form class="leaderboard-form" id="lbForm">
+          <label>Congrats! Enter your name:</label>
+          <input type="text" id="lbName" maxlength="16" required placeholder="Your name">
+          <button type="submit">Submit</button>
+        </form>`;
+      document.getElementById('lbForm').onsubmit = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('lbName').value.trim();
+        if (!name) return;
+        saveToLeaderboard(name, score);
+      };
+    }
+    function saveToLeaderboard(name, score) {
+      // Firebase code here (replace below with actual push)
+      leaderboard.push({name, score});
+      leaderboard = leaderboard.sort((a,b) => b.score - a.score).slice(0,10);
+      localStorage.setItem('catcapital_lb', JSON.stringify(leaderboard));
+      playSound('leaderboard');
+      showConfetti();
+      renderLeaderboard();
+      document.getElementById('lbForm').remove();
+    }
+    function resetLeaderboard() {
+      // Firebase code here (replace below with actual reset)
+      leaderboard = [];
+      localStorage.removeItem('catcapital_lb');
+      renderLeaderboard();
+    }
+    function sanitize(str) {
+      return str.replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+    // ==== CONFETTI (EMOJI) ====
+    function showConfetti() {
+      const emojis = ['🎉','🎊','🥳','😺','🏛️','✨','😸','😻'];
+      const ctx = confettiCanvas.getContext('2d');
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      confettiCanvas.style.left = '0';
+      confettiCanvas.style.top = '0';
+      confettiCanvas.style.transform = 'none';
+      confettiCanvas.style.position = 'fixed';
+      let particles = [];
+      for (let i = 0; i < 36; i++) {
+        particles.push({
+          x: Math.random() * confettiCanvas.width,
+          y: -40 - Math.random()*60,
+          vy: 2 + Math.random()*3,
+          emoji: emojis[Math.floor(Math.random()*emojis.length)],
+          size: 38 + Math.random()*18,
+          angle: Math.random()*Math.PI*2,
+          spin: (Math.random()-0.5)*0.15
+        });
+      }
+      function draw() {
+        ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+        particles.forEach(p => {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.font = `${p.size}px serif`;
+          ctx.globalAlpha = 0.85;
+          ctx.fillText(p.emoji, 0, 0);
+          ctx.restore();
+        });
+      }
+      function update() {
+        particles.forEach(p => {
+          p.y += p.vy;
+          p.angle += p.spin;
+        });
+        particles = particles.filter(p => p.y < confettiCanvas.height + 60);
+      }
+      function loop() {
+        draw();
+        update();
+        if (particles.length > 0) {
+          confettiTimeout = requestAnimationFrame(loop);
+        } else {
+          ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+        }
+      }
+      loop();
+      setTimeout(() => {
+        cancelAnimationFrame(confettiTimeout);
+        ctx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+      }, 3200);
+    }
+    window.onresize = () => {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+      confettiCanvas.style.left = '0';
+      confettiCanvas.style.top = '0';
+      confettiCanvas.style.transform = 'none';
+      confettiCanvas.style.position = 'fixed';
+    };
+    // ==== SOUND ====
+    function playSound(name) {
+      if (sounds[name]) {
+        sounds[name].currentTime = 0;
+        sounds[name].play();
+      }
+    }
+    // ==== INIT ====
+    window.onload = () => {
+      showMainMenu();
+    };
+  </script>
+</body>
+</html>

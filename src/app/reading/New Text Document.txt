@@ -1,0 +1,114 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+interface Book {
+  title: string;
+  author: string;
+  description: string;
+  genre: string[];
+  status: 'Read' | 'Currently Reading' | 'Want to Read';
+  link?: string;
+  rating?: number;
+  thoughts?: string;
+  isbn?: string;
+}
+
+// Keep your existing books array, just add ISBN numbers for each book
+const books: Book[] = [
+  {
+    title: 'Kissinger: A Biography',
+    author: 'Walter Isaacson',
+    description: '...',
+    genre: ['Biography', 'Politics', 'History'],
+    status: 'Currently Reading',
+    link: 'https://www.amazon.com/Kissinger-Biography-Walter-Isaacson/dp/0743286979',
+    isbn: '0743286979'
+  },
+  // ... add ISBNs for your other books
+];
+
+export default function ReadingPage() {
+  const [failedCovers, setFailedCovers] = useState<Set<string>>(new Set());
+
+  const groupedBooks = {
+    'Currently Reading': books.filter(book => book.status === 'Currently Reading'),
+    'Read': books.filter(book => book.status === 'Read'),
+    'Want to Read': books.filter(book => book.status === 'Want to Read')
+  };
+
+  const getCoverUrl = (book: Book) => {
+    if (failedCovers.has(book.isbn || '')) {
+      return '/images/books/default-cover.jpg';
+    }
+
+    if (book.isbn) {
+      return `https://covers.openlibrary.org/b/isbn/${book.isbn}-L.jpg`;
+    }
+    return '/images/books/default-cover.jpg';
+  };
+
+  const handleCoverError = (isbn: string | undefined) => {
+    if (!isbn) return;
+    setFailedCovers(prev => new Set(prev).add(isbn));
+  };
+
+  return (
+    <div className="container-wrapper py-8 sm:py-16">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-4 sm:mb-8 text-[var(--primary)]">
+        My Reading Journey
+      </h1>
+      
+      <div className="prose prose-invert prose-lg max-w-3xl mx-auto mb-8 sm:mb-12 px-4 sm:px-0">
+        <p className="text-base sm:text-lg text-[var(--foreground)]/80">
+          Books are windows to new worlds, sources of inspiration, and catalysts for creativity. 
+          Here's a curated list of books that have shaped my thinking, along with some that I'm excited to explore.
+        </p>
+      </div>
+
+      {Object.entries(groupedBooks).map(([status, statusBooks]) => (
+        statusBooks.length > 0 && (
+          <div key={status} className="mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--primary)] mb-6 sm:mb-8 px-4 sm:px-0">
+              {status}
+            </h2>
+            <div className="grid gap-6 sm:gap-8">
+              {statusBooks.map((book, index) => (
+                <div 
+                  key={index} 
+                  className="group bg-[var(--secondary)] p-4 sm:p-6 rounded-lg border border-[var(--primary)]/20 hover:border-[var(--primary)]/40 transition-all hover:shadow-lg"
+                >
+                  <div className="grid sm:grid-cols-[200px,1fr] md:grid-cols-[250px,1fr] gap-6 sm:gap-8">
+                    <div className="relative aspect-[2/3] w-full max-w-[200px] mx-auto sm:mx-0 bg-[var(--primary)]/5 rounded-lg overflow-hidden">
+                      <Link 
+                        href={book.link || '#'} 
+                        target="_blank"
+                        className="block w-full h-full transition-transform duration-300 group-hover:scale-[1.02]"
+                      >
+                        <Image
+                          src={getCoverUrl(book)}
+                          alt={`Cover of ${book.title}`}
+                          fill
+                          className="object-cover rounded-lg shadow-md"
+                          sizes="(max-width: 640px) 200px, 250px"
+                          onError={() => handleCoverError(book.isbn)}
+                          priority={index < 2}
+                        />
+                      </Link>
+                    </div>
+
+                    <div className="flex flex-col">
+                      {/* Rest of your book card content */}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )
+      ))}
+    </div>
+  );
+}

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drug or Girl's Name Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Is it a <span class="drug">Drug</span> or <span class="girl">Girl's Name</span>?</h1>
+        <div id="game">
+            <p id="wordDisplay">Loading...</p>
+            <div class="buttons">
+                <button id="girlNameBtn">Girl's Name</button>
+                <button id="drugNameBtn">Drug</button>
+            </div>
+            <p id="score">Score: 0</p>
+            <p id="streak">Current Streak: 0</p>
+            <div class="lives-bar">
+                <div class="lives-bar-fill"></div>
+            </div>
+            <p id="lives">Lives Left: 3</p>
+            <p id="feedbackMessage" class="feedback"></p>
+        </div>
+        <div id="gameOver" class="hidden">
+            <h2>Game Over!</h2>
+            <p>Your Score: <span id="finalScore"></span></p>
+            <div id="leaderboardSection">
+                <h3>Leaderboard</h3>
+                <ol id="leaderboard"></ol>
+                <div id="newHighScore" class="hidden">
+                    <p>Congratulations! You made it to the leaderboard.</p>
+                    <input type="text" id="playerName" placeholder="Enter your name">
+                    <button id="submitScoreBtn">Submit</button>
+                </div>
+            </div>
+            <button id="restartBtn">Play Again</button>
+        </div>
+    </div>
+    <div class="confetti-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
